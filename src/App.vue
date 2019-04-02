@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import './style.scss';
 import '@/assets/iconfont/iconfont.css';
 export default {
   name: 'App'
@@ -13,6 +14,7 @@ export default {
 
 <style lang="scss">
 #app {
+  height: 100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

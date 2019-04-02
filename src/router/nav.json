@@ -1,0 +1,29 @@
+{
+  "admin": [],
+  "client": [
+    {
+      "name": "通知公告",
+      "icon": "charts",
+      "path": "/home",
+      "index": "/home"
+    },
+    {
+      "name": "个人资料",
+      "icon": "charts",
+      "path": "/home",
+      "index": "/home"
+    },
+    {
+      "name": "简历提交",
+      "icon": "charts",
+      "path": "/home",
+      "index": "/home"
+    },
+    {
+      "name": "材料下载",
+      "icon": "charts",
+      "path": "/home",
+      "index": "/home"
+    }
+  ]
+}
