@@ -10,20 +10,20 @@
     {
       "name": "个人资料",
       "icon": "charts",
-      "path": "/home",
-      "index": "/home"
+      "path": "/baseinfo",
+      "index": "/baseinfo"
     },
     {
       "name": "简历提交",
       "icon": "charts",
-      "path": "/home",
-      "index": "/home"
+      "path": "/submit",
+      "index": "/submit"
     },
     {
       "name": "材料下载",
       "icon": "charts",
-      "path": "/home",
-      "index": "/home"
+      "path": "/download",
+      "index": "/download"
     }
   ]
 }

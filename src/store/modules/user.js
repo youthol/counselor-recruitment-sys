@@ -1,6 +1,6 @@
 import { LOADING, SUCCESS, FAIL } from '../status';
 import types from '../mutation-types';
-import * as userAPI from '@/api/user';
+import userAPI from '@/api/user';
 
 const {
   // users
