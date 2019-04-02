@@ -1,29 +1,53 @@
-# counselor-recruitment-sys
+# Counselor Recruitment System
 
-## Project setup
+### 项目目录
+
 ```
-yarn install
+counselor-recruitment-sys
+├── dist
+├── node_modules
+├── public
+│   ├── favicon.ico
+│   └── index.html
+├── src
+│   ├── api
+│   ├── assets
+│   ├── components
+│   |    └── xxx.vue
+│   ├── router
+│   |    └── index.js
+│   ├── store
+│   |    ├── modules
+│   |    └── index.js
+│   ├── utils
+│   ├── views
+│   ├── App.vue
+│   └── main.js
+├── CHANGELOG.md
+├── README.md
+└── package.json
 ```
 
-### Compiles and hot-reloads for development
-```
+### 使用技术
+
+- Vue
+- ElementUI
+
+### Project setup
+
+```bash
+# Install dependencies
 yarn run serve
-```
 
-### Compiles and minifies for production
-```
+# Compiles and hot-reloads for development
+yarn run serve
+
+# Compiles and minifies for production
 yarn run build
-```
 
-### Run your tests
-```
+# Run your tests
 yarn run test
-```
 
-### Lints and fixes files
-```
+# Lints and fixes files
 yarn run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
