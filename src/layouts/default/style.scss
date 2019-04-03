@@ -1,11 +1,13 @@
+@import '../../style/var';
+
 .page {
   min-width: 960px;
-  background-color: #e9eef3;
+  background-color: $page-body-background;
 
   &__hd {
     display: flex;
     overflow: hidden;
-    background: #2d3a4b;
+    background: $page-header-background;
     box-shadow: -2px 2.5px 7px rgba(8, 24, 66, 0.2);
   }
 
@@ -16,12 +18,11 @@
 
   &__hd,
   &__ft {
-    height: 60px;
-    line-height: 60px;
+    height: $page-header-height;
+    line-height: $page-header-height;
   }
 
   &__ft {
-    color: #333;
     text-align: left;
     font-size: 12px;
     color: #586069;
