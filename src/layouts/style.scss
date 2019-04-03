@@ -1,0 +1,74 @@
+
+@import '../style/var';
+
+.page {
+  min-width: 960px;
+  background-color: $page-body-background;
+
+  &__hd {
+    display: flex;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    color: #fff;
+    background: $page-header-background;
+    box-shadow: -2px 2.5px 7px rgba(8, 24, 66, 0.2);
+  }
+
+  &__bd {
+    margin: 20px 20px 0;
+    background: #fff;
+  }
+
+  &__hd,
+  &__ft {
+    height: $page-header-height;
+    line-height: $page-header-height;
+  }
+
+  &__ft {
+    text-align: left;
+    font-size: 12px;
+    color: #586069;
+  }
+
+  &__logo {
+    margin: 10px 30px;
+    height: 40px;
+  }
+
+  &__title {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  &__nav {
+    margin: 0 20px;
+  }
+
+  .user-operation {
+    position: absolute;
+    right: 0;
+    padding: 0 30px;
+    font-size: 14px;
+    background: $page-header-user-background;
+  }
+
+  .user-operation::before {
+    position: absolute;
+    left: -20px;
+    height: 0;
+    width: 0;
+    content: '';
+    background: $page-header-background;
+    border-top: $page-header-height solid transparent;
+    border-right: 20px solid $page-header-user-background;
+  }
+
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+    font-weight: 500;
+  }
+}
