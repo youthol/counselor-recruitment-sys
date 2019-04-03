@@ -4,7 +4,7 @@
       <slot name="header"></slot>
     </el-header>
     <el-main class="page__bd">
-      <slot name="main"></slot>
+      <slot name="content"></slot>
     </el-main>
     <el-footer class="page__ft">
       <div>© {{ dateRange }} 山东理工大学学生工作处</div>
@@ -18,7 +18,7 @@ export default {
   name: 'BaseLayout',
   computed: {
     dateRange() {
-      const start = '2016';
+      const start = 2016;
       const current = new Date().getFullYear();
       return `${start}-${current}`;
     }
