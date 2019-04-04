@@ -16,22 +16,25 @@
             v-for="menu in menus"
             :key="menu.path"
             :index="menu.index"
-          >
-            {{ menu.name }}
-          </el-menu-item>
+            >{{ menu.name }}</el-menu-item>
         </el-menu>
       </div>
       <div class="user-operation">
-        <!-- <span>admin</span> -->
         <el-dropdown placement="bottom" @command="handleClick">
           <span v-if="checkLogin" class="el-dropdown-link">
-            <span style="padding:0 10px">{{ username }}</span>
-            <i class="iconfont icon-caozuo"></i>
+            <span class="user-name">{{ username }}</span>
+            <i class="iconfont icon-denglu"></i>
           </span>
           <span v-else class="el-dropdown-link" @click="handleLogin">未登录</span>
           <el-dropdown-menu v-if="checkLogin" slot="dropdown">
-            <el-dropdown-item command="1">修改密码</el-dropdown-item>
-            <el-dropdown-item command="2">退出登录</el-dropdown-item>
+            <el-dropdown-item command="1">
+              <i class="iconfont icon-bianji"></i>
+              <span>修改密码</span>
+            </el-dropdown-item>
+            <el-dropdown-item command="2">
+              <i class="iconfont icon-tuichu"></i>
+              <span>退出登录</span>
+            </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>

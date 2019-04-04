@@ -1,4 +1,3 @@
-
 @import '../style/var';
 
 .page {
@@ -68,7 +67,11 @@
 
   .el-dropdown-link {
     cursor: pointer;
-    color: #409EFF;
+    color: #409eff;
     font-weight: 500;
+  }
+
+  .user-name {
+    padding: 0 8px;
   }
 }
