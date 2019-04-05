@@ -1,0 +1,26 @@
+.content-form {
+  padding: 20px 40px;
+}
+
+.form-card {
+  margin: 20px;
+}
+
+.form-explain {
+  font-size: 12px;
+}
+
+.content-btn-group {
+  float: right;
+  padding: 30px 50px;
+}
+
+// custom element ui
+
+.el-col {
+  .el-input,
+  .el-select,
+  .el-date-editor {
+    width: 100% !important;
+  }
+}
