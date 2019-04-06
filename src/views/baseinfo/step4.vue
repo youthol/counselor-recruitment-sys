@@ -13,8 +13,10 @@
 </template>
 
 <script>
+import baseinfoMixin from '@/mixins/baseinfo-mixin';
 export default {
   name: 'step4',
+  mixins: [baseinfoMixin],
   methods: {
     handlePrev() {
       this.$emit('prev');

@@ -101,10 +101,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { generateId } from '@/utils/public';
+import baseinfoMixin from '@/mixins/baseinfo-mixin';
 export default {
   name: 'step2',
+  mixins: [baseinfoMixin],
   data() {
     return {
       step2Form: {
@@ -143,19 +143,12 @@ export default {
           { required: false, message: '请输入学位证书编号', trigger: 'blur' }
         ]
       },
-      step2Forms: [{ id: generateId('form'), ...this.step2Form }]
+      step2Forms: [{ id: this.generateId('form'), ...this.step2Form }]
     };
-  },
-  computed: {
-    ...mapState('baseinfo', [
-      'educationOptions',
-      'degreeOptions',
-      'learningTypeOptions'
-    ])
   },
   methods: {
     addForm() {
-      this.step2Forms.push({ id: generateId('form'), ...this.step2Form });
+      this.step2Forms.push({ id: this.generateId('form'), ...this.step2Form });
     },
     editForm(form) {
       console.log(form);
@@ -165,12 +158,12 @@ export default {
       this.$refs[form][0].validate(valid => {
         if (valid) {
           console.log('submit!');
-          this.$emit('submit');
+          this.handleNext();
         } else {
           console.log('error submit!!');
           // return false;
         }
-        this.$emit('submit', this.step1Form);
+        this.handleNext(this.step2Forms.find(el => el.id === form));
       });
     },
     resetForm(form) {
@@ -180,12 +173,6 @@ export default {
     deleteForm(form) {
       const index = this.step2Forms.findIndex(el => el.id === form);
       this.step2Forms.splice(index, 1);
-    },
-    handlePrev() {
-      this.$emit('prev');
-    },
-    handleNext() {
-      this.$emit('next');
     }
   }
 };
