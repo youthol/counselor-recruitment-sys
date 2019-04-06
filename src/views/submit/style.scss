@@ -1,0 +1,17 @@
+.content-timeline {
+  max-width: 960px;
+  margin: 0 auto;
+  
+  .record-card {
+    &__title {
+      font-weight: 600;
+      color: #303133;
+    }
+    
+    &__desc {
+      padding: 0 20px;
+      font-size: 13px;
+      color: #909399;
+    }
+  }
+}

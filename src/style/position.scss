@@ -7,7 +7,15 @@
 }
 
 .clearfix {
-  clear: both;
+  &::before,
+  &::after {
+      display: table;
+  content: '';
+  }
+
+  &::after {
+    clear: both;
+  }
 }
 
 .text-center {

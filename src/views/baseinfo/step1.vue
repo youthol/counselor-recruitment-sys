@@ -193,36 +193,22 @@
     </el-form>
     <el-row class="form-explain">
       <i class="el-icon-info"></i>
-      <span>说明：*为必填项，否则影响审核结果。</span>
+      <span class="form-explain__title">说明：</span>
+      <span>*为必填项，否则影响审核结果。</span>
     </el-row>
     <el-row class="content-btn-group">
       <el-button size="small" @click="resetForm">重置</el-button>
       <el-button size="small" :disabled="activeStep === 0" @click="handlePrev">上一步</el-button>
-      <el-button size="small" :disabled="activeStep === 3" @click="handleNext">下一步</el-button>
+      <el-button size="small" :disabled="activeStep === 3" @click="submitForm">下一步</el-button>
     </el-row>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import baseinfoMixin from '@/mixins/baseinfo-mixin';
 export default {
   name: 'step1',
-  props: {
-    activeStep: {
-      type: Number,
-      default: 0
-    },
-    isEdit: {
-      type: Boolean,
-      default: false
-    },
-    objData: {
-      type: Object,
-      default() {
-        return null;
-      }
-    }
-  },
+  mixins: [baseinfoMixin],
   data() {
     return {
       formLayout: {
@@ -320,16 +306,6 @@ export default {
       dialogVisible: false
     };
   },
-  computed: {
-    ...mapState('baseinfo', [
-      'genderOptions',
-      'politicalOptions',
-      'peopleOptions',
-      'marriageOptions',
-      'educationOptions',
-      'jobOptions'
-    ])
-  },
   methods: {
     handleRemove(file, fileList) {
       console.log(file, fileList);
@@ -343,33 +319,17 @@ export default {
       this.$refs.step1Form.validate(valid => {
         if (valid) {
           console.log('submit!');
-          this.$emit('submit');
+          this.handleNext();
         } else {
           console.log('error submit!!');
           // return false;
         }
-        this.$emit('submit', this.step1Form);
+        this.handleNext(this.step1Form);
       });
     },
     resetForm() {
       console.log(this.$refs);
       this.$refs.step1Form.resetFields();
-    },
-    handlePrev() {
-      this.$emit('prev');
-    },
-    handleNext() {
-      this.$refs.step1Form.validate(valid => {
-        if (valid) {
-          // 前端验证成功，发送后端验证
-          // 后端验证整个后，存储 store
-          // 进入下一步
-          this.$emit('next');
-        } else {
-          console.log('error submit!!');
-        }
-        this.$emit('next', this.step1Form);
-      });
     }
   }
 };

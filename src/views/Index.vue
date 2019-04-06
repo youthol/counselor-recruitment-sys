@@ -45,7 +45,7 @@
 
     <!-- content -->
     <template v-slot:content>
-      <h3>{{ title || '首页' }}</h3>
+      <h3 class="content__title">{{ title || '首页' }}</h3>
       <!-- <div id="nav">
         <router-link to="/">Home</router-link>|
         <router-link to="/about">About</router-link>
