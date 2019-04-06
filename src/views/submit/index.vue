@@ -1,23 +1,16 @@
 <template>
-  <div>
-    <h1>This is submit page!</h1>
+  <div class="content-timeline">
+    <!-- <h1>This is submit page!</h1> -->
     <el-timeline>
-      <el-timeline-item timestamp="2018-4-12" placement="top">
-        <el-card>
-          <h4>更新 Github 模板</h4>
-          <p>王小虎 提交于 2018/4/12 20:46</p>
-        </el-card>
-      </el-timeline-item>
-      <el-timeline-item timestamp="2018/4/3" placement="top">
-        <el-card>
-          <h4>更新 Github 模板</h4>
-          <p>王小虎 提交于 2018/4/3 20:46</p>
-        </el-card>
-      </el-timeline-item>
-      <el-timeline-item timestamp="2018/4/2" placement="top">
-        <el-card>
-          <h4>更新 Github 模板</h4>
-          <p>王小虎 提交于 2018/4/2 20:46</p>
+      <el-timeline-item
+        v-for="record in submitRecords"
+        :key="record.id"
+        :timestamp="record.created_at"
+        placement="top"
+      >
+        <el-card class="record-card">
+          <span class="record-card__title">{{ record.statusMsg }}</span>
+          <span class="record-card__desc">{{ record.description }}</span>
         </el-card>
       </el-timeline-item>
     </el-timeline>
@@ -25,6 +18,7 @@
 </template>
 
 <script>
+import './style.scss';
 export default {
   name: 'submit',
   data() {
@@ -32,21 +26,24 @@ export default {
       submitRecords: [
         {
           id: 1,
+          statusCode: 1,
           statusMsg: '审核未通过',
-          description: '无',
-          created_at: '2019-03-18 09:59',
-          created_at: '2019-03-18 09:59'
+          description: '1111',
+          created_at: '2019-03-17 18:11',
+          created_at: '2019-03-17 18:11'
         },
         {
           id: 2,
+          statusCode: 1,
           statusMsg: '审核未通过',
           description: '无',
-          created_at: '2019-03-18 09:59',
-          created_at: '2019-03-18 09:59'
+          created_at: '	2019-03-17 23:09',
+          created_at: '	2019-03-17 23:09'
         },
         {
           id: 3,
-          statusMsg: '审核未通过',
+          statusCode: 1,
+          statusMsg: '待审核',
           description: '无',
           created_at: '2019-03-18 09:59',
           created_at: '2019-03-18 09:59'
@@ -54,5 +51,5 @@ export default {
       ]
     };
   }
-}
+};
 </script>
