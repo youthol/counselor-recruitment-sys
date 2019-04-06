@@ -8,12 +8,21 @@
         :timestamp="record.created_at"
         placement="top"
       >
-        <el-card class="record-card">
+        <el-card class="record-card" shadow="never">
           <span class="record-card__title">{{ record.statusMsg }}</span>
           <span class="record-card__desc">{{ record.description }}</span>
         </el-card>
       </el-timeline-item>
     </el-timeline>
+    <el-row class="form-explain">
+      <i class="el-icon-info"></i>
+      <span class="form-explain__title">说明：</span>
+      <ol>
+        <li>待审核的报名信息可以无限次修改。</li>
+        <li>审核未通过的报名信息，可修改后再次提交,每人最多审核3次。</li>
+        <li>审核通过的报名信息不可修改。</li>
+      </ol>
+    </el-row>
   </div>
 </template>
 

@@ -193,7 +193,8 @@
     </el-form>
     <el-row class="form-explain">
       <i class="el-icon-info"></i>
-      <span>说明：*为必填项，否则影响审核结果。</span>
+      <span class="form-explain__title">说明：</span>
+      <span>*为必填项，否则影响审核结果。</span>
     </el-row>
     <el-row class="content-btn-group">
       <el-button size="small" @click="resetForm">重置</el-button>
