@@ -1,6 +1,5 @@
 <template>
   <div class="content-download">
-    <!-- <h1>This is download page!</h1> -->
     <el-row :gutter="30">
       <el-col v-for="file in fileList" :key="file.id" :span="8">
         <el-card shadow="hover">

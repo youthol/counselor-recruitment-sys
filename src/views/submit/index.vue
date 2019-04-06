@@ -1,11 +1,11 @@
 <template>
   <div class="content-timeline">
-    <!-- <h1>This is submit page!</h1> -->
     <el-timeline>
       <el-timeline-item
         v-for="record in submitRecords"
         :key="record.id"
         :timestamp="record.created_at"
+        :color="chooseColor(record.statusCode)"
         placement="top"
       >
         <el-card class="record-card" shadow="never">
@@ -35,7 +35,7 @@ export default {
       submitRecords: [
         {
           id: 1,
-          statusCode: 1,
+          statusCode: 3,
           statusMsg: '审核未通过',
           description: '1111',
           created_at: '2019-03-17 18:11',
@@ -43,7 +43,7 @@ export default {
         },
         {
           id: 2,
-          statusCode: 1,
+          statusCode: 3,
           statusMsg: '审核未通过',
           description: '无',
           created_at: '	2019-03-17 23:09',
@@ -51,7 +51,7 @@ export default {
         },
         {
           id: 3,
-          statusCode: 1,
+          statusCode: 2,
           statusMsg: '待审核',
           description: '无',
           created_at: '2019-03-18 09:59',
@@ -59,6 +59,20 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    chooseColor(code) {
+      switch (code) {
+        case 1:
+          return '#67C23A';
+        case 2:
+          return '#008AFF';
+        case 3:
+          return '#F56C6C';
+        default:
+          return '#909399';
+      }
+    }
   }
 };
 </script>
