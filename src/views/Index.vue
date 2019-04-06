@@ -84,9 +84,8 @@ export default {
       return this.checkAdmin(this.$route.path) ? navData.admin : navData.client;
     },
     activeIndex() {
-      let path = this.menus.some(el => el.path.includes(this.$route.path));
-      console.log('path', path);
-      return path ? this.$route.path : '';
+      const isMenuRoute = this.menus.some(el => el.path.includes(this.$route.path));
+      return isMenuRoute ? this.$route.path : '';
     },
     checkLogin() {
       return true;
@@ -94,7 +93,8 @@ export default {
   },
   methods: {
     checkAdmin(path) {
-      return /^\/admin/.test(path);
+      const pattern = /^\/admin/;
+      return pattern.test(path);
     },
     handleLogin() {
       console.log('login');
