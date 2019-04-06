@@ -18,11 +18,6 @@
         />
       </keep-alive>
     <!-- </teansition> -->
-
-    <!-- <el-button-group class="float-right">
-      <el-button size="small" :disabled="activeStep === 0" @click="handlePrev">上一步</el-button>
-      <el-button size="small" :disabled="activeStep === 4" @click="handleNext">{{ activeStep === 3 ? '完成' : '下一步'}}</el-button>
-    </el-button-group> -->
   </div>
 </template>
 

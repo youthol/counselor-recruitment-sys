@@ -39,7 +39,14 @@
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="民族" prop="people">
-              <el-input v-model="step1Form.people" placeholder="请输入"></el-input>
+              <el-select v-model="step1Form.people" placeholder="请选择(可检索)" filterable clearable>
+                <el-option
+                  v-for="item in peopleOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
@@ -106,7 +113,7 @@
             <i class="el-icon-plus"></i>
           </el-upload>
           <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl" alt>
+            <img width="100%" :src="dialogImageUrl" alt />
           </el-dialog>
         </el-col>
       </el-row>
@@ -120,7 +127,7 @@
           <el-form-item label="档案所在单位" prop="fileLocation">
             <el-input v-model="step1Form.fileLocation" placeholder="请输入"></el-input>
           </el-form-item>
-        </el-col>      
+        </el-col>
         <el-col :lg="6" :md="8" :sm="8" :xs="8">
           <el-form-item label="最高学历" prop="education">
             <el-select v-model="step1Form.education" placeholder="请选择" clearable>
@@ -189,10 +196,9 @@
       <span>说明：*为必填项，否则影响审核结果。</span>
     </el-row>
     <el-row class="content-btn-group">
-      <!-- <el-button @click="resetForm">重置</el-button> -->
-      <!-- <el-button type="primary" @click="submitForm">提交</el-button> -->
-      <el-button size="small" @click="handlePrev">上一步</el-button>
-      <el-button size="small" @click="handleNext">下一步</el-button>
+      <el-button size="small" @click="resetForm">重置</el-button>
+      <el-button size="small" :disabled="activeStep === 0" @click="handlePrev">上一步</el-button>
+      <el-button size="small" :disabled="activeStep === 3" @click="handleNext">下一步</el-button>
     </el-row>
   </div>
 </template>
@@ -243,7 +249,7 @@ export default {
         graduateDate: '',
         graduateSchool: '',
         jobApplied: '',
-        freshGraduate: '',
+        freshGraduate: ''
       },
       step1FormRules: {
         name: [
@@ -318,6 +324,7 @@ export default {
     ...mapState('baseinfo', [
       'genderOptions',
       'politicalOptions',
+      'peopleOptions',
       'marriageOptions',
       'educationOptions',
       'jobOptions'
@@ -352,7 +359,17 @@ export default {
       this.$emit('prev');
     },
     handleNext() {
-      this.$emit('next');
+      this.$refs.step1Form.validate(valid => {
+        if (valid) {
+          // 前端验证成功，发送后端验证
+          // 后端验证整个后，存储 store
+          // 进入下一步
+          this.$emit('next');
+        } else {
+          console.log('error submit!!');
+        }
+        this.$emit('next', this.step1Form);
+      });
     }
   }
 };

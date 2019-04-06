@@ -24,3 +24,8 @@
     width: 100% !important;
   }
 }
+
+.el-form-item--small .el-form-item__content,
+.el-form-item--small .el-form-item__label {
+  line-height: 34px;
+}

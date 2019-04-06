@@ -9,23 +9,29 @@
         label-width="110px"
         size="small"
       >
-        <el-row :gutter="20">
-          <el-col :span="6">
+        <el-row :gutter="10">
+          <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="起止时间" prop="dateRange">
-              <el-input v-model="form.dateRange" placeholder="请输入"></el-input>
+              <el-date-picker
+                v-model="form.dateRange"
+                type="daterange"
+                range-separator="~"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+              />
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="毕业院校" prop="graduateSchool">
               <el-input v-model="form.graduateSchool" placeholder="请输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="所学专业" prop="major">
               <el-input v-model="form.major" placeholder="请输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="学历" prop="education">
               <el-select v-model="form.education" placeholder="请选择" clearable>
                 <el-option
@@ -37,7 +43,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="学位" prop="major">
               <el-select v-model="form.degree" placeholder="请选择" clearable>
                 <el-option
@@ -49,7 +55,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="学习形式" prop="learningType">
               <el-select v-model="form.learningType" placeholder="请选择" clearable>
                 <el-option
@@ -61,12 +67,12 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="毕业证书编号" prop="geaduattionID">
               <el-input v-model="form.geaduattionID" placeholder="请输入"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="学位证书编号" prop="degreeID">
               <el-input v-model="form.degreeID" placeholder="请输入"></el-input>
             </el-form-item>
@@ -88,14 +94,15 @@
     </el-row>
     <el-row class="content-btn-group">
       <el-button type="primary" size="small" @click="addForm">新增教育经历</el-button>
-      <el-button size="small" @click="handlePrev">上一步</el-button>
-      <el-button size="small" @click="handleNext">下一步</el-button>
+      <el-button size="small" :disabled="activeStep === 0" @click="handlePrev">上一步</el-button>
+      <el-button size="small" :disabled="activeStep === 3" @click="handleNext">下一步</el-button>
     </el-row>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import { generateId } from '@/utils/public';
 export default {
   name: 'step2',
   data() {
@@ -136,7 +143,7 @@ export default {
           { required: false, message: '请输入学位证书编号', trigger: 'blur' }
         ]
       },
-      step2Forms: [{ id: this.generateId('form'), ...this.step2Form }]
+      step2Forms: [{ id: generateId('form'), ...this.step2Form }]
     };
   },
   computed: {
@@ -148,9 +155,10 @@ export default {
   },
   methods: {
     addForm() {
-      this.step2Forms.push({ id: this.generateId('form'), ...this.step2Form });
+      this.step2Forms.push({ id: generateId('form'), ...this.step2Form });
     },
-    editForm() {
+    editForm(form) {
+      console.log(form);
     },
     submitForm(form) {
       console.log('form', this.step2Forms.find(el => el.id === form));
@@ -172,9 +180,6 @@ export default {
     deleteForm(form) {
       const index = this.step2Forms.findIndex(el => el.id === form);
       this.step2Forms.splice(index, 1);
-    },
-    generateId(prefix = 'id') {
-      return `${prefix}_${new Date().getTime().toString().slice(2, 8)}_${Math.random().toString(16).slice(2, 8)}`;
     },
     handlePrev() {
       this.$emit('prev');
