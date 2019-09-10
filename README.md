@@ -51,3 +51,19 @@ yarn run test
 # Lints and fixes files
 yarn run lint
 ```
+
+### 部分语法解释
+
+#### 自定义路径
+
+你会在大部分文件中遇到这样的路径：
+
+```js
+import '@/assets/iconfont/iconfont.css';
+```
+
+路径中的 `@` 表示自定义路径，这是webpack中的解析（resolve）功能，在 vue-cli3 之前，你可以在 `/build/webpack.base.conf.js` 内的 `resolve.alias` 内直接修改，但是 vue-cli3 内不在有该文件夹。
+
+现在你可以在 `vue.config.js` 中添加 webpack 的相关配置。
+
+另外，在vue-cli 的自定义路径中，`@` 默认配置为 `/src`，配置文件位于 `/node_modules/@vue/cli-service/lib/config/base.js`

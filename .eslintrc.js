@@ -25,38 +25,50 @@ module.exports = {
   // 规则相关解释请查看 http://eslint.cn/docs/rules/
   rules: {
     'array-bracket-newline': [2, 'consistent'],
-    'array-bracket-spacing': 0, 
+    'array-bracket-spacing': 0,
     'array-callback-return': 2,
     'array-element-newline': 0,
     'arrow-parens': 0,
-    'arrow-spacing': [2, {
-      before: true,
-      after: true
-    }],
+    'arrow-spacing': [
+      2,
+      {
+        before: true,
+        after: true
+      }
+    ],
     'block-spacing': 0,
     'brace-style': [2, '1tbs', { allowSingleLine: true }],
     'comma-dangle': 0,
-    'comma-spacing': [2, {
-      before: false,
-      after: true
-    }],
+    'comma-spacing': [
+      2,
+      {
+        before: false,
+        after: true
+      }
+    ],
     'computed-property-spacing': 2,
     'consistent-this': [2, 'self', 'that'],
-    'curly': [2, 'multi-line', 'consistent'],
+    curly: [2, 'multi-line', 'consistent'],
     'default-case': 2,
     'dot-location': 1,
     'eol-last': 2,
-    'eqeqeq': [2, 'always', { null: 'ignore' }],
+    eqeqeq: [2, 'always', { null: 'ignore' }],
     'func-call-spacing': 1,
-    'generator-star-spacing': [2, {
-      before: true,
-      after: false
-    }],
-    'indent': 0,
-    'key-spacing': [1, {
-      beforeColon: false,
-      afterColon: true
-    }],
+    'generator-star-spacing': [
+      2,
+      {
+        before: true,
+        after: false
+      }
+    ],
+    indent: 0,
+    'key-spacing': [
+      1,
+      {
+        beforeColon: false,
+        afterColon: true
+      }
+    ],
     'multiline-ternary': [1, 'always-multiline'],
     'max-len': [1, { code: 100 }],
     'newline-per-chained-call': [2, { ignoreChainWithDepth: 4 }],
@@ -73,7 +85,10 @@ module.exports = {
     'no-empty-function': 2,
     'no-eq-null': 0,
     'no-eval': 2,
-    'no-extra-parens': [2, 'all', {
+    'no-extra-parens': [
+      2,
+      'all',
+      {
         nestedBinaryExpressions: false,
         ignoreJSX: 'all',
         enforceForArrowConditionals: false
@@ -83,7 +98,9 @@ module.exports = {
     'no-fallthrough': [2, { commentPattern: '.' }],
     'no-inner-declarations': [2, 'both'],
     'no-loop-func': 1,
-    'no-mixed-operators': [2, {
+    'no-mixed-operators': [
+      2,
+      {
         groups: [['&&', '||']]
       }
     ],
@@ -94,19 +111,25 @@ module.exports = {
     'no-return-assign': 2,
     'no-return-await': 2,
     'no-this-before-super': 2,
-    'no-trailing-spaces': [2, {
+    'no-trailing-spaces': [
+      2,
+      {
         skipBlankLines: false,
         ignoreComments: true
       }
     ],
-    'no-unused-vars': [2, {
+    'no-unused-vars': [
+      2,
+      {
         vars: 'all',
-        args: 'none', 
+        args: 'none',
         ignoreRestSiblings: true,
         caughtErrors: 'none'
       }
     ],
-    'no-use-before-define': [2, {
+    'no-use-before-define': [
+      2,
+      {
         functions: false,
         classes: false
       }
@@ -118,7 +141,10 @@ module.exports = {
     'object-curly-spacing': [1, 'always', { objectsInObjects: false }],
     'object-property-newline': 0,
     'object-shorthand': 0,
-    'quotes': [2, 'single', {
+    quotes: [
+      2,
+      'single',
+      {
         avoidEscape: true,
         allowTemplateLiterals: true
       }
@@ -126,32 +152,46 @@ module.exports = {
     'require-await': 0,
     'require-yield': 2,
     'rest-spread-spacing': [2, 'never'],
-    'semi-spacing': [2, {
-      before: false,
-      after: true
-    }],
+    'semi-spacing': [
+      2,
+      {
+        before: false,
+        after: true
+      }
+    ],
     'semi-style': [2, 'last'],
-    'semi': 2,
+    semi: 2,
     'space-before-blocks': [2, 'always'],
     'space-before-function-paren': [2, 'never'],
-    'spaced-comment': [2, 'always', {
+    'spaced-comment': [
+      2,
+      'always',
+      {
         block: {
           exceptions: ['*'],
           balanced: true
         }
       }
     ],
-    'switch-colon-spacing': [2, {
-      before: false,
-      after: true
-    }],
+    'switch-colon-spacing': [
+      2,
+      {
+        before: false,
+        after: true
+      }
+    ],
     'yield-star-spacing': [2, 'before'],
     // vue rules
-    'vue/html-closing-bracket-spacing': [2, {
-      singleline: 'never',
-      multiline: 'always'
-    }],
-    'vue/html-closing-bracket-newline': [2, {
+    'vue/html-closing-bracket-spacing': [
+      2,
+      {
+        singleline: 'never',
+        multiline: 'always'
+      }
+    ],
+    'vue/html-closing-bracket-newline': [
+      2,
+      {
         singleline: 'never',
         multiline: 'always'
       }

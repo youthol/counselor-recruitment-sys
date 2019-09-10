@@ -7,6 +7,7 @@
 <script>
 import './style.scss';
 import '@/assets/iconfont/iconfont.css';
+
 export default {
   name: 'App'
 };
