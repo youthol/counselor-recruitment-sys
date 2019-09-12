@@ -13,15 +13,19 @@ const {
   USERINFO_FAILURE
 } = types;
 
+/**
+ * 用户全局状态
+ */
 const state = {
   userList: [],
-  userListStatus: '',
+  userListStatus: '', // 用户列表状态
   userinfo: {},
   userinfoStatus: ''
 };
 
 const getters = {};
 
+// 同步执行者
 const mutations = {
   // users
   [USERS](state) {
@@ -47,6 +51,7 @@ const mutations = {
   }
 };
 
+// 异步执行者
 const actions = {
   async getUsers({ commit }) {
     try {

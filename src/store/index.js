@@ -1,3 +1,6 @@
+/**
+ * vuex主文件
+ */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createLogger from 'vuex/dist/logger';

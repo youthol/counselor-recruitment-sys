@@ -13,22 +13,18 @@
           background-color="#2d3a4b"
           @select="handleSelect"
         >
-          <el-menu-item
-            v-for="menu in menus"
-            :key="menu.path"
-            :index="menu.index"
-          >
-            {{ menu.name }}
-          </el-menu-item>
+          <el-menu-item v-for="menu in menus" :key="menu.path" :index="menu.index">{{ menu.name }}</el-menu-item>
         </el-menu>
       </div>
       <div class="user-operation">
-        <el-dropdown placement="bottom" @command="handleClick">
-          <span v-if="checkLogin" class="dropdown-link">
+
+        <!-- 已登录 -->
+        <el-dropdown placement="bottom" @command="handleClick" v-if="checkLogin">
+          <span class="dropdown-link">
             <span class="user-name">{{ username }}</span>
             <i class="iconfont icon-denglu"></i>
           </span>
-          <span v-else class="dropdown-link" @click="handleLogin">未登录</span>
+          <!-- 登录后用户图标下拉菜单 -->
           <el-dropdown-menu v-if="checkLogin" slot="dropdown">
             <el-dropdown-item command="1">
               <i class="iconfont icon-bianji"></i>
@@ -40,7 +36,21 @@
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
+
+        <!-- 未登录 -->
+        <div v-else>
+          <span class="dropdown-link" @click="handleAccount" title="点击注册" data-key="1">注册</span>
+          <span class="dropdown-link login" @click="handleAccount" title="点击登录" data-key="2">登录</span>
+        </div>
       </div>
+      
+      <!-- 登录、注册弹窗 -->
+      <account
+        v-if="dialogShow"
+        :visible="dialogShow"
+        :title="dialogInfo.title"
+        @close="closeDialog"
+      />
     </template>
 
     <!-- content -->
@@ -49,7 +59,7 @@
       <!-- <div id="nav">
         <router-link to="/">Home</router-link>|
         <router-link to="/about">About</router-link>
-      </div> -->
+      </div>-->
       <div class="content__bd">
         <router-view />
       </div>
@@ -61,15 +71,21 @@
 import './style.scss';
 import navData from '@/router/nav.json';
 import BaseLayout from '@/layouts/BaseLayout';
+import Account from '@/components/Account';
 
 export default {
   name: 'Index',
   components: {
-    BaseLayout
+    BaseLayout,
+    Account
   },
   data() {
     return {
-      username: '张无忌'
+      username: '张无忌',
+      dialogShow: false, // 显示弹出层
+      dialogInfo: {
+        title: null
+      }
     };
   },
   mounted() {
@@ -84,11 +100,13 @@ export default {
       return this.checkAdmin(this.$route.path) ? navData.admin : navData.client;
     },
     activeIndex() {
-      const isMenuRoute = this.menus.some(el => el.path.includes(this.$route.path));
+      const isMenuRoute = this.menus.some(el =>
+        el.path.includes(this.$route.path)
+      );
       return isMenuRoute ? this.$route.path : '';
     },
     checkLogin() {
-      return true;
+      return false;
     }
   },
   methods: {
@@ -96,8 +114,18 @@ export default {
       const pattern = /^\/admin/;
       return pattern.test(path);
     },
-    handleLogin() {
-      console.log('login');
+    handleAccount(e) {
+      // 注册
+      console.log(e.target.dataset);
+      this.dialogShow = true;
+      if (e.target.dataset.key === '1') {
+        this.dialogInfo.title = '注册';
+        return;
+      }
+      this.dialogInfo.title = '登录';
+    },
+    closeDialog() {
+      this.dialogShow = false;
     },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
