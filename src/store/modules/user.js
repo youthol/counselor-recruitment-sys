@@ -18,7 +18,7 @@ const {
  */
 const state = {
   userList: [],
-  userListStatus: '', // 用户列表状态
+  userListStatus: '',
   userinfo: {},
   userinfoStatus: ''
 };

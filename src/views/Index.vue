@@ -45,21 +45,18 @@
       </div>
       
       <!-- 登录、注册弹窗 -->
-      <account
+      <account-dialog
         v-if="dialogShow"
         :visible="dialogShow"
         :title="dialogInfo.title"
-        @close="closeDialog"
-      />
+      >
+        <login :close="closeDialog" />
+      </account-dialog>
     </template>
 
     <!-- content -->
     <template v-slot:content>
       <h3 class="content__title">{{ title || '首页' }}</h3>
-      <!-- <div id="nav">
-        <router-link to="/">Home</router-link>|
-        <router-link to="/about">About</router-link>
-      </div>-->
       <div class="content__bd">
         <router-view />
       </div>
@@ -71,13 +68,15 @@
 import './style.scss';
 import navData from '@/router/nav.json';
 import BaseLayout from '@/layouts/BaseLayout';
-import Account from '@/components/Account';
+import AccountDialog from '@/components/AccountDialog';
+import Login from '@/components/Login';
 
 export default {
   name: 'Index',
   components: {
     BaseLayout,
-    Account
+    AccountDialog,
+    Login
   },
   data() {
     return {

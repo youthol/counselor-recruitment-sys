@@ -6,7 +6,7 @@ const routes = [
       title: '首页',
       authRequired: false
     },
-    component: () => import('@/views/home/index')
+    component: () => import('@/views/home/index') // 动态引入
   },
   {
     path: '/baseinfo',
@@ -38,6 +38,9 @@ const routes = [
   {
     path: '/about',
     name: 'about',
+    meta: {
+      title: '关于我们'
+    },
     component: () => import('@/views/about/index')
   }
 ];
