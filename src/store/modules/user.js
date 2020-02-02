@@ -15,6 +15,8 @@ const {
 
 /**
  * 用户全局状态
+ * userList 只在后台使用
+ * userInfo 在前后台都能用到
  */
 const state = {
   userList: [],
@@ -25,7 +27,6 @@ const state = {
 
 const getters = {};
 
-// 同步执行者
 const mutations = {
   // users
   [USERS](state) {
@@ -51,7 +52,6 @@ const mutations = {
   }
 };
 
-// 异步执行者
 const actions = {
   async getUsers({ commit }) {
     try {

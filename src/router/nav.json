@@ -1,11 +1,17 @@
 {
   "admin": [],
-  "client": [
+  "clientLogin": [
     {
-      "name": "通知公告",
+      "name": "首页",
       "icon": "charts",
       "path": "/home",
       "index": "/home"
+    },
+    {
+      "name": "通知公告",
+      "icon": "charts",
+      "path": "/notice",
+      "index": "/notice"
     },
     {
       "name": "个人资料",
@@ -24,6 +30,20 @@
       "icon": "charts",
       "path": "/download",
       "index": "/download"
+    }
+  ],
+  "clientQuit": [
+    {
+      "name": "首页",
+      "icon": "charts",
+      "path": "/home",
+      "index": "/home"
+    },
+    {
+      "name": "通知公告",
+      "icon": "charts",
+      "path": "/notice",
+      "index": "/notice"
     }
   ]
 }

@@ -1,6 +1,11 @@
 <template>
   <div class="content-form">
-    <el-card v-for="form in step2Forms" :key="form.id" shadow="hover" class="form-card">
+    <el-card
+      v-for="form in step2Forms"
+      :key="form.id"
+      shadow="hover"
+      class="form-card"
+    >
       <el-form
         :model="form"
         :rules="step2FormRules"
@@ -23,7 +28,10 @@
           </el-col>
           <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="毕业院校" prop="graduateSchool">
-              <el-input v-model="form.graduateSchool" placeholder="请输入"></el-input>
+              <el-input
+                v-model="form.graduateSchool"
+                placeholder="请输入"
+              ></el-input>
             </el-form-item>
           </el-col>
           <el-col :lg="6" :md="8" :sm="8" :xs="8">
@@ -33,7 +41,11 @@
           </el-col>
           <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="学历" prop="education">
-              <el-select v-model="form.education" placeholder="请选择" clearable>
+              <el-select
+                v-model="form.education"
+                placeholder="请选择"
+                clearable
+              >
                 <el-option
                   v-for="item in educationOptions"
                   :key="item.value"
@@ -57,7 +69,11 @@
           </el-col>
           <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="学习形式" prop="learningType">
-              <el-select v-model="form.learningType" placeholder="请选择" clearable>
+              <el-select
+                v-model="form.learningType"
+                placeholder="请选择"
+                clearable
+              >
                 <el-option
                   v-for="item in learningTypeOptions"
                   :key="item.value"
@@ -69,7 +85,10 @@
           </el-col>
           <el-col :lg="6" :md="8" :sm="8" :xs="8">
             <el-form-item label="毕业证书编号" prop="geaduattionID">
-              <el-input v-model="form.geaduattionID" placeholder="请输入"></el-input>
+              <el-input
+                v-model="form.geaduattionID"
+                placeholder="请输入"
+              ></el-input>
             </el-form-item>
           </el-col>
           <el-col :lg="6" :md="8" :sm="8" :xs="8">
@@ -82,8 +101,12 @@
           <el-form-item>
             <el-button @click="deleteForm(form.id)">删除</el-button>
             <el-button @click="resetForm(form.id)">重置</el-button>
-            <el-button type="primary" @click="editForm(form.id)">编辑</el-button>
-            <el-button type="primary" @click="submitForm(form.id)">提交</el-button>
+            <el-button type="primary" @click="editForm(form.id)">
+              编辑
+            </el-button>
+            <el-button type="primary" @click="submitForm(form.id)">
+              提交
+            </el-button>
           </el-form-item>
         </el-row>
       </el-form>
@@ -94,9 +117,15 @@
       <span>*为必填项，否则影响审核结果。</span>
     </el-row>
     <el-row class="content-btn-group">
-      <el-button type="primary" size="small" @click="addForm">新增教育经历</el-button>
-      <el-button size="small" :disabled="activeStep === 0" @click="handlePrev">上一步</el-button>
-      <el-button size="small" :disabled="activeStep === 3" @click="handleNext">下一步</el-button>
+      <el-button type="primary" size="small" @click="addForm">
+        新增教育经历
+      </el-button>
+      <el-button size="small" :disabled="activeStep === 0" @click="handlePrev">
+        上一步
+      </el-button>
+      <el-button size="small" :disabled="activeStep === 3" @click="handleNext">
+        下一步
+      </el-button>
     </el-row>
   </div>
 </template>
@@ -120,20 +149,21 @@ export default {
       },
       step2FormRules: {
         dateRange: [
-          { type: 'date', required: true, message: '请选择起止时间', trigger: 'change' }
+          {
+            type: 'date',
+            required: true,
+            message: '请选择起止时间',
+            trigger: 'change'
+          }
         ],
         graduateSchool: [
           { required: true, message: '请输入毕业院校', trigger: 'blur' }
         ],
-        major: [
-          { required: true, message: '请输入所学专业', trigger: 'blur' }
-        ],
+        major: [{ required: true, message: '请输入所学专业', trigger: 'blur' }],
         education: [
           { required: true, message: '请选择学历', trigger: 'change' }
         ],
-        degree: [
-          { required: true, message: '请选择学位', trigger: 'change' }
-        ],
+        degree: [{ required: true, message: '请选择学位', trigger: 'change' }],
         learningType: [
           { required: true, message: '请选择学习形式', trigger: 'change' }
         ],
@@ -155,7 +185,10 @@ export default {
       console.log(form);
     },
     submitForm(form) {
-      console.log('form', this.step2Forms.find(el => el.id === form));
+      console.log(
+        'form',
+        this.step2Forms.find(el => el.id === form)
+      );
       this.$refs[form][0].validate(valid => {
         if (valid) {
           console.log('submit!');

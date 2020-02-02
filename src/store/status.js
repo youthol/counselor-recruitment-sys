@@ -1,4 +1,4 @@
-// 一次请求可能有三种状态值
+// 一次请求可能有的三种状态值
 export const LOADING = 'LOADING';
 export const SUCCESS = 'SUCCESS';
 export const FAIL = 'FAIL';

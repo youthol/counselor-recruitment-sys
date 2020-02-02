@@ -2,7 +2,11 @@
   <base-layout>
     <!-- header -->
     <template v-slot:header>
-      <img src="../assets/images/SDUT_logo@203x203.png" alt="LOGO" class="page__logo" />
+      <img
+        src="../assets/images/SDUT_logo@203x203.png"
+        alt="LOGO"
+        class="page__logo"
+      />
       <div class="page__nav">
         <el-menu
           router
@@ -13,13 +17,22 @@
           background-color="#2d3a4b"
           @select="handleSelect"
         >
-          <el-menu-item v-for="menu in menus" :key="menu.path" :index="menu.index">{{ menu.name }}</el-menu-item>
+          <el-menu-item
+            v-for="menu in menus"
+            :key="menu.path"
+            :index="menu.index"
+          >
+            {{ menu.name }}
+          </el-menu-item>
         </el-menu>
       </div>
       <div class="user-operation">
-
         <!-- 已登录 -->
-        <el-dropdown placement="bottom" @command="handleClick" v-if="checkLogin">
+        <el-dropdown
+          v-if="checkLogin"
+          placement="bottom"
+          @command="handleClick"
+        >
           <span class="dropdown-link">
             <span class="user-name">{{ username }}</span>
             <i class="iconfont icon-denglu"></i>
@@ -39,19 +52,24 @@
 
         <!-- 未登录 -->
         <div v-else>
-          <span class="dropdown-link" @click="handleAccount" title="点击注册" data-key="1">注册</span>
-          <span class="dropdown-link login" @click="handleAccount" title="点击登录" data-key="2">登录</span>
+          <span
+            class="dropdown-link"
+            title="点击注册"
+            data-key="1"
+            @click="toAccountPage"
+          >
+            注册
+          </span>
+          <span
+            class="dropdown-link login"
+            data-key="2"
+            title="点击登录"
+            @click="toAccountPage"
+          >
+            登录
+          </span>
         </div>
       </div>
-      
-      <!-- 登录、注册弹窗 -->
-      <account-dialog
-        v-if="dialogShow"
-        :visible="dialogShow"
-        :title="dialogInfo.title"
-      >
-        <login :close="closeDialog" />
-      </account-dialog>
     </template>
 
     <!-- content -->
@@ -68,15 +86,11 @@
 import './style.scss';
 import navData from '@/router/nav.json';
 import BaseLayout from '@/layouts/BaseLayout';
-import AccountDialog from '@/components/AccountDialog';
-import Login from '@/components/Login';
 
 export default {
   name: 'Index',
   components: {
-    BaseLayout,
-    AccountDialog,
-    Login
+    BaseLayout
   },
   data() {
     return {
@@ -87,16 +101,18 @@ export default {
       }
     };
   },
-  mounted() {
-    console.log('store', this.$store);
-    console.log('route', this.$route);
-  },
   computed: {
     title() {
       return this.$route.meta.title;
     },
     menus() {
-      return this.checkAdmin(this.$route.path) ? navData.admin : navData.client;
+      if (this.checkAdmin(this.$route.path)) {
+        return navData.admin;
+      } else if (this.checkLogin) {
+        return navData.clientLogin;
+      } else {
+        return navData.clientQuit;
+      }
     },
     activeIndex() {
       const isMenuRoute = this.menus.some(el =>
@@ -105,32 +121,42 @@ export default {
       return isMenuRoute ? this.$route.path : '';
     },
     checkLogin() {
-      return false;
+      return this.$store.state.login.isLogin;
     }
+  },
+  mounted() {
+    console.log('store', this.$store);
+    console.log('route', this.$route);
   },
   methods: {
     checkAdmin(path) {
       const pattern = /^\/admin/;
       return pattern.test(path);
     },
-    handleAccount(e) {
-      // 注册
-      console.log(e.target.dataset);
-      this.dialogShow = true;
-      if (e.target.dataset.key === '1') {
-        this.dialogInfo.title = '注册';
-        return;
-      }
-      this.dialogInfo.title = '登录';
-    },
-    closeDialog() {
-      this.dialogShow = false;
-    },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
     handleClick(command) {
-      console.log(command);
+      if (command === '2') {
+        this.$confirm('确定要退出吗？', '注意', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$router.push('home');
+        });
+      }
+    },
+    toAccountPage() {
+      const pattern = /^\/home/;
+      if (pattern.test(this.$route.path)) {
+        this.$message({
+          message: '请将信息填写完整！',
+          type: 'warning'
+        });
+        return;
+      }
+      this.$router.push('home');
     }
   }
 };

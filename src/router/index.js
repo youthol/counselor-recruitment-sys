@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Index from '@/views/Index';
 
-import home from './home';
+import routes from './routes';
 
 Vue.use(Router);
 
@@ -14,7 +14,7 @@ const router = new Router({
       path: '/',
       component: Index,
       children: [
-        ...home // home router
+        ...routes // all of routes
       ],
       redirect: '/home'
     },

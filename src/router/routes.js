@@ -9,6 +9,15 @@ const routes = [
     component: () => import('@/views/home/index') // 动态引入
   },
   {
+    path: '/notice/:id',
+    name: 'notice',
+    meta: {
+      title: '通知公告',
+      authRequired: false
+    },
+    component: () => import('@/views/notice/index') // 动态引入
+  },
+  {
     path: '/baseinfo',
     name: 'baseinfo',
     meta: {

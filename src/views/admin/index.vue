@@ -13,19 +13,11 @@ export default {
     BaseLayout
   },
   data() {
-    return {
-      
-    }
+    return {};
   },
-  computed: {
-
-  },
-  methods: {
-
-  }
-}
+  computed: {},
+  methods: {}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -10,7 +10,7 @@ module.exports = {
       modules: true
     }
   },
-  extends: ['plugin:vue/essential', '@vue/prettier'],
+  extends: ['plugin:vue/recommended', '@vue/prettier'],
   env: {
     node: true,
     es6: true
@@ -24,6 +24,7 @@ module.exports = {
   },
   // 规则相关解释请查看 http://eslint.cn/docs/rules/
   rules: {
+    'prettier/prettier': 'error',
     'array-bracket-newline': [2, 'consistent'],
     'array-bracket-spacing': 0,
     'array-callback-return': 2,
