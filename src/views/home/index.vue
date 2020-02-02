@@ -1,55 +1,73 @@
 <template>
-  <div>
-    <h1>欢迎使用2020年辅导员招聘系统</h1>
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="title" label="通知名称"></el-table-column>
-      <el-table-column prop="date" label="发布日期" width="300"></el-table-column>
-      <el-table-column
-        prop="tag"
-        label="查看状态"
-        width="300"
-        :filters="[{ text: '已看', value: '已看' }, { text: '未看', value: '未看' }]"
-        :filter-method="filterTag"
-        filter-placement="bottom-end"
-      >
-        <template slot-scope="scope">
-          <el-tag
-            :type="scope.row.tag === '未看' ? 'primary' : 'success'"
-            close-transition
-          >{{scope.row.tag}}</el-tag>
-        </template>
-      </el-table-column>
-    </el-table>
+  <div class="card">
+    <h1 class="headline" :class="{ headlineLogin: checkLogin }">
+      欢迎使用 {{ year }} 年辅导员招聘系统
+    </h1>
+
+    <el-button
+      v-if="checkLogin"
+      type="success"
+      class="start-btn"
+      @click="entry"
+    >
+      开始报名
+    </el-button>
+    <account-form v-else />
   </div>
 </template>
 
 <script>
+import AccountForm from '@/components/AccountForm';
+
 export default {
-  name: 'home',
+  name: 'Home',
+  components: {
+    AccountForm
+  },
   data() {
     return {
-      tableData: [
-        {
-          title: '最新通知1',
-          date: '2016-05-02',
-          tag: '已看'
-        },
-        {
-          title: '最新通知2',
-          date: '2016-05-02',
-          tag: '未看'
-        }
-      ]
+      year: new Date().getFullYear()
     };
   },
-  methods: {
-    formatter(row, column) {
-      return row.address;
-    },
-    filterTag(value, row) {
-      return row.tag === value;
+  computed: {
+    checkLogin() {
+      return this.$store.state.login.isLogin;
     }
   },
-  components: {}
+  methods: {
+    entry() {
+      this.$router.push('baseinfo');
+    }
+  }
 };
 </script>
+
+<style scoped>
+.card {
+  width: 600px;
+  margin: 20px auto 0;
+  padding: 50px 0;
+  box-shadow: 0 2px 14px 2px rgb(212, 212, 212);
+  border-radius: 6px;
+}
+
+.headline {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.start-btn {
+  display: block;
+  margin: 50px auto 0;
+}
+
+.card-margin {
+  margin-top: 40px;
+}
+
+.btn-con {
+  text-align: center;
+  margin-top: 80px;
+}
+</style>

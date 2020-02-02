@@ -13,12 +13,19 @@
         <el-col :lg="18" :md="16" :sm="16" :xs="16">
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="姓名" prop="name">
-              <el-input v-model="step1Form.name" placeholder="请输入"></el-input>
+              <el-input
+                v-model="step1Form.name"
+                placeholder="请输入"
+              ></el-input>
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="性别" prop="gender">
-              <el-select v-model="step1Form.gender" placeholder="请选择" clearable>
+              <el-select
+                v-model="step1Form.gender"
+                placeholder="请选择"
+                clearable
+              >
                 <el-option
                   v-for="item in genderOptions"
                   :key="item.value"
@@ -39,7 +46,12 @@
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="民族" prop="people">
-              <el-select v-model="step1Form.people" placeholder="请选择(可检索)" filterable clearable>
+              <el-select
+                v-model="step1Form.people"
+                placeholder="请选择(可检索)"
+                filterable
+                clearable
+              >
                 <el-option
                   v-for="item in peopleOptions"
                   :key="item.value"
@@ -51,7 +63,11 @@
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="政治面貌" prop="political">
-              <el-select v-model="step1Form.political" placeholder="请选择" clearable>
+              <el-select
+                v-model="step1Form.political"
+                placeholder="请选择"
+                clearable
+              >
                 <el-option
                   v-for="item in politicalOptions"
                   :key="item.value"
@@ -72,12 +88,19 @@
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="籍贯" prop="hometown">
-              <el-input v-model="step1Form.hometown" placeholder="请输入"></el-input>
+              <el-input
+                v-model="step1Form.hometown"
+                placeholder="请输入"
+              ></el-input>
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="婚姻状况" prop="marriage">
-              <el-select v-model="step1Form.marriage" placeholder="请选择" clearable>
+              <el-select
+                v-model="step1Form.marriage"
+                placeholder="请选择"
+                clearable
+              >
                 <el-option
                   v-for="item in marriageOptions"
                   :key="item.value"
@@ -89,17 +112,26 @@
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="身份证号" prop="identityNum">
-              <el-input v-model="step1Form.identityNum" placeholder="请输入"></el-input>
+              <el-input
+                v-model="step1Form.identityNum"
+                placeholder="请输入"
+              ></el-input>
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="联系电话" prop="phone">
-              <el-input v-model="step1Form.phone" placeholder="请输入"></el-input>
+              <el-input
+                v-model="step1Form.phone"
+                placeholder="请输入"
+              ></el-input>
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12" :sm="12" :xs="12">
             <el-form-item label="Email" prop="email">
-              <el-input v-model="step1Form.email" placeholder="请输入"></el-input>
+              <el-input
+                v-model="step1Form.email"
+                placeholder="请输入"
+              ></el-input>
             </el-form-item>
           </el-col>
         </el-col>
@@ -120,17 +152,27 @@
       <el-row :gutter="formLayout.gutter">
         <el-col :lg="6" :md="8" :sm="8" :xs="8">
           <el-form-item label="现工作单位" prop="workunit">
-            <el-input v-model="step1Form.workunit" placeholder="请输入"></el-input>
+            <el-input
+              v-model="step1Form.workunit"
+              placeholder="请输入"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :lg="6" :md="8" :sm="8" :xs="8">
           <el-form-item label="档案所在单位" prop="fileLocation">
-            <el-input v-model="step1Form.fileLocation" placeholder="请输入"></el-input>
+            <el-input
+              v-model="step1Form.fileLocation"
+              placeholder="请输入"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :lg="6" :md="8" :sm="8" :xs="8">
           <el-form-item label="最高学历" prop="education">
-            <el-select v-model="step1Form.education" placeholder="请选择" clearable>
+            <el-select
+              v-model="step1Form.education"
+              placeholder="请选择"
+              clearable
+            >
               <el-option
                 v-for="item in educationOptions"
                 :key="item.value"
@@ -142,12 +184,18 @@
         </el-col>
         <el-col :lg="6" :md="8" :sm="8" :xs="8">
           <el-form-item label="最高学位" prop="degree">
-            <el-input v-model="step1Form.degree" placeholder="请输入"></el-input>
+            <el-input
+              v-model="step1Form.degree"
+              placeholder="请输入"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :lg="6" :md="8" :sm="8" :xs="8">
           <el-form-item label="硕士专业代码" prop="masterMajorCode">
-            <el-input v-model="step1Form.masterMajorCode" placeholder="请输入研究生报考专业代码"></el-input>
+            <el-input
+              v-model="step1Form.masterMajorCode"
+              placeholder="请输入研究生报考专业代码"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :lg="6" :md="8" :sm="8" :xs="8">
@@ -166,12 +214,19 @@
         </el-col>
         <el-col :lg="6" :md="8" :sm="8" :xs="8">
           <el-form-item label="毕业学校" prop="graduateSchool">
-            <el-input v-model="step1Form.graduateSchool" placeholder="请输入"></el-input>
+            <el-input
+              v-model="step1Form.graduateSchool"
+              placeholder="请输入"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :lg="6" :md="8" :sm="8" :xs="8">
           <el-form-item label="应聘岗位" prop="jobApplied">
-            <el-select v-model="step1Form.jobApplied" placeholder="请选择" clearable>
+            <el-select
+              v-model="step1Form.jobApplied"
+              placeholder="请选择"
+              clearable
+            >
               <el-option
                 v-for="item in jobOptions"
                 :key="item.value"
@@ -198,8 +253,12 @@
     </el-row>
     <el-row class="content-btn-group">
       <el-button size="small" @click="resetForm">重置</el-button>
-      <el-button size="small" :disabled="activeStep === 0" @click="handlePrev">上一步</el-button>
-      <el-button size="small" :disabled="activeStep === 3" @click="submitForm">下一步</el-button>
+      <el-button size="small" :disabled="activeStep === 0" @click="handlePrev">
+        上一步
+      </el-button>
+      <el-button size="small" :disabled="activeStep === 3" @click="submitForm">
+        下一步
+      </el-button>
     </el-row>
   </div>
 </template>
@@ -238,39 +297,37 @@ export default {
         freshGraduate: ''
       },
       step1FormRules: {
-        name: [
-          { required: true, message: '请输入姓名', trigger: 'blur' }
-        ],
-        gender: [
-          { required: true, message: '请选择性别', trigger: 'change' }
-        ],
+        name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
+        gender: [{ required: true, message: '请选择性别', trigger: 'change' }],
         birthday: [
-          { type: 'date', required: true, message: '请选择出生年月', trigger: 'change' }
+          {
+            type: 'date',
+            required: true,
+            message: '请选择出生年月',
+            trigger: 'change'
+          }
         ],
-        people: [
-          { required: true, message: '请选择民族', trigger: 'change' }
-        ],
+        people: [{ required: true, message: '请选择民族', trigger: 'change' }],
         political: [
           { required: true, message: '请选择政治面貌', trigger: 'change' }
         ],
         partytime: [
-          { type: 'date', required: false, message: '请选择入党时间', trigger: 'change' }
+          {
+            type: 'date',
+            required: false,
+            message: '请选择入党时间',
+            trigger: 'change'
+          }
         ],
-        hometown: [
-          { required: true, message: '请输入籍贯', trigger: 'blur' }
-        ],
+        hometown: [{ required: true, message: '请输入籍贯', trigger: 'blur' }],
         marriage: [
           { required: true, message: '请选择婚姻状况', trigger: 'change' }
         ],
         identityNum: [
           { required: true, message: '请输入身份证号', trigger: 'blur' }
         ],
-        phone: [
-          { required: true, message: '请输入联系方式', trigger: 'blur' }
-        ],
-        email: [
-          { required: true, message: '请输入Email', trigger: 'blur' }
-        ],
+        phone: [{ required: true, message: '请输入联系方式', trigger: 'blur' }],
+        email: [{ required: true, message: '请输入Email', trigger: 'blur' }],
         workunit: [
           { required: true, message: '请输入现工作单位', trigger: 'blur' }
         ],
@@ -284,13 +341,20 @@ export default {
           { required: true, message: '请输入最高学位', trigger: 'blur' }
         ],
         masterMajorCode: [
-          { required: true, message: '请输入研究生报考专业代码', trigger: 'blur' }
+          {
+            required: true,
+            message: '请输入研究生报考专业代码',
+            trigger: 'blur'
+          }
         ],
-        major: [
-          { required: true, message: '请输入所学专业', trigger: 'blur' }
-        ],
+        major: [{ required: true, message: '请输入所学专业', trigger: 'blur' }],
         graduateDate: [
-          { type: 'date', required: true, message: '请选择毕业时间', trigger: 'change' }
+          {
+            type: 'date',
+            required: true,
+            message: '请选择毕业时间',
+            trigger: 'change'
+          }
         ],
         graduateSchool: [
           { required: true, message: '请输入学校', trigger: 'blur' }
@@ -299,7 +363,12 @@ export default {
           { required: true, message: '请选择应聘岗位', trigger: 'change' }
         ],
         freshGraduate: [
-          { type: 'boolean', required: true, message: '请选择是否应届毕业生', trigger: 'change' }
+          {
+            type: 'boolean',
+            required: true,
+            message: '请选择是否应届毕业生',
+            trigger: 'change'
+          }
         ]
       },
       dialogImageUrl: '',

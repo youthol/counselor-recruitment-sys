@@ -1,22 +1,23 @@
 <template>
   <div>
     <el-steps :active="activeStep" align-center>
-      <el-step title="基本资料" icon="el-icon-document"/>
-      <el-step title="教育经历" icon="el-icon-document"/>
-      <el-step title="工作经历" icon="el-icon-document"/>
-      <el-step title="校内实践" icon="el-icon-document"/>
+      <el-step title="基本资料" icon="el-icon-document" />
+      <el-step title="教育经历" icon="el-icon-document" />
+      <el-step title="工作经历" icon="el-icon-document" />
+      <el-step title="校内实践" icon="el-icon-document" />
     </el-steps>
     <!-- <teansition name="el-fade-in-linear" mode="out-in" appear :duration="1000"> -->
-      <keep-alive>
-        <component
-          :is="currentStep"
-          :active-step="activeStep"
-          :is-edit="false"
-          @submit="handleNext"
-          @prev="handlePrev"
-          @next="handleNext"
-        />
-      </keep-alive>
+    <!-- 动态组件 -->
+    <keep-alive>
+      <component
+        :is="currentStep"
+        :active-step="activeStep"
+        :is-edit="false"
+        @submit="handleNext"
+        @prev="handlePrev"
+        @next="handleNext"
+      />
+    </keep-alive>
     <!-- </teansition> -->
   </div>
 </template>
@@ -57,7 +58,7 @@ export default {
       if (this.activeStep < 3) {
         this.activeStep = this.activeStep + 1;
       } else {
-        console.log('提交'); 
+        console.log('提交');
       }
     }
   }
