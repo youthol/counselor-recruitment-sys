@@ -4,46 +4,39 @@
     {
       "name": "首页",
       "icon": "charts",
-      "path": "/home",
-      "index": "/home"
+      "path": "/home"
     },
     {
       "name": "通知公告",
       "icon": "charts",
-      "path": "/notice",
-      "index": "/notice"
+      "path": "/notice"
     },
     {
       "name": "个人资料",
       "icon": "charts",
-      "path": "/baseinfo",
-      "index": "/baseinfo"
+      "path": "/baseinfo"
     },
     {
       "name": "简历提交",
       "icon": "charts",
-      "path": "/submit",
-      "index": "/submit"
+      "path": "/submit"
     },
     {
       "name": "材料下载",
       "icon": "charts",
-      "path": "/download",
-      "index": "/download"
+      "path": "/download"
     }
   ],
   "clientQuit": [
     {
       "name": "首页",
       "icon": "charts",
-      "path": "/home",
-      "index": "/home"
+      "path": "/home"
     },
     {
       "name": "通知公告",
       "icon": "charts",
-      "path": "/notice",
-      "index": "/notice"
+      "path": "/notice"
     }
   ]
 }

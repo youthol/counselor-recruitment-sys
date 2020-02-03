@@ -20,7 +20,7 @@
           <el-menu-item
             v-for="menu in menus"
             :key="menu.path"
-            :index="menu.index"
+            :index="menu.path"
           >
             {{ menu.name }}
           </el-menu-item>
@@ -136,6 +136,9 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
+    /**
+     * 下拉项点击函数
+     */
     handleClick(command) {
       if (command === '2') {
         this.$confirm('确定要退出吗？', '注意', {
@@ -143,6 +146,7 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
+          this.$store.dispatch('login/logout');
           this.$router.push('home');
         });
       }
@@ -156,7 +160,7 @@ export default {
         });
         return;
       }
-      this.$router.push('home');
+      this.$router.replace('home');
     }
   }
 };

@@ -1,17 +1,17 @@
 <template>
   <div>
-    
+    <notice-table />
   </div>
 </template>
 
 <script>
-import Content from './content';
-import NoticeTable from './table';
+import NoticeContent from './NoticeContent';
+import NoticeTable from './NoticeTable';
 
 export default {
-  name: 'notice',
+  name: 'Notice',
   components: {
-    Content,
+    NoticeContent,
     NoticeTable
   },
   data() {

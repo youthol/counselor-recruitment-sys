@@ -30,7 +30,7 @@ import Step3 from './step3';
 import Step4 from './step4';
 
 export default {
-  name: 'baseinfo',
+  name: 'Baseinfo',
   components: {
     Step1,
     Step2,
@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      activeStep: 1
+      activeStep: 0
     };
   },
   computed: {

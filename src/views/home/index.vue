@@ -4,14 +4,18 @@
       欢迎使用 {{ year }} 年辅导员招聘系统
     </h1>
 
-    <el-button
-      v-if="checkLogin"
-      type="success"
-      class="start-btn"
-      @click="entry"
-    >
-      开始报名
-    </el-button>
+    <div v-if="checkLogin" class="btns">
+      <el-button
+        type="primary"
+        icon="el-icon-warning-outline"
+        @click="readNotice"
+      >
+        阅读通知
+      </el-button>
+      <el-button plain type="success" class="start-btn" @click="entry">
+        开始报名
+      </el-button>
+    </div>
     <account-form v-else />
   </div>
 </template>
@@ -35,6 +39,9 @@ export default {
     }
   },
   methods: {
+    readNotice() {
+      this.$router.push('notice');
+    },
     entry() {
       this.$router.push('baseinfo');
     }
@@ -57,9 +64,13 @@ export default {
   font-size: 24px;
 }
 
+.btns {
+  text-align: center;
+  margin: 70px 0 0;
+}
+
 .start-btn {
-  display: block;
-  margin: 50px auto 0;
+  margin-left: 30px;
 }
 
 .card-margin {
