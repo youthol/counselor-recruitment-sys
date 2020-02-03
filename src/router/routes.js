@@ -9,7 +9,7 @@ const routes = [
     component: () => import('@/views/home/index') // 动态引入
   },
   {
-    path: '/notice/:id',
+    path: '/notice',
     name: 'notice',
     meta: {
       title: '通知公告',
@@ -22,7 +22,7 @@ const routes = [
     name: 'baseinfo',
     meta: {
       title: '个人信息',
-      authRequired: false
+      authRequired: true
     },
     component: () => import('@/views/baseinfo/index')
   },
@@ -31,7 +31,7 @@ const routes = [
     name: 'submit',
     meta: {
       title: '简历提交',
-      authRequired: false
+      authRequired: true
     },
     component: () => import('@/views/submit/index')
   },
@@ -40,7 +40,7 @@ const routes = [
     name: 'download',
     meta: {
       title: '材料下载',
-      authRequired: false
+      authRequired: true
     },
     component: () => import('@/views/download/index')
   },

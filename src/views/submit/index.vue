@@ -29,7 +29,7 @@
 <script>
 import './style.scss';
 export default {
-  name: 'submit',
+  name: 'Submit',
   data() {
     return {
       submitRecords: [
@@ -38,7 +38,6 @@ export default {
           statusCode: 3,
           statusMsg: '审核未通过',
           description: '1111',
-          created_at: '2019-03-17 18:11',
           created_at: '2019-03-17 18:11'
         },
         {
@@ -46,7 +45,6 @@ export default {
           statusCode: 3,
           statusMsg: '审核未通过',
           description: '无',
-          created_at: '	2019-03-17 23:09',
           created_at: '	2019-03-17 23:09'
         },
         {
@@ -54,7 +52,6 @@ export default {
           statusCode: 2,
           statusMsg: '待审核',
           description: '无',
-          created_at: '2019-03-18 09:59',
           created_at: '2019-03-18 09:59'
         }
       ]

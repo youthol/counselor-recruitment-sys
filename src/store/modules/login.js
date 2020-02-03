@@ -39,6 +39,9 @@ const actions = {
       commit(LOGIN_FAILURE);
       throw error;
     }
+  },
+  async logout({ commit }) {
+    commit(LOGOUT);
   }
 };
 

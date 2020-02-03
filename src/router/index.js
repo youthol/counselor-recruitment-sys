@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Index from '@/views/Index';
 
 import routes from './routes';
+import store from '../store';
 
 Vue.use(Router);
 
@@ -24,6 +25,21 @@ const router = new Router({
       redirect: '/home'
     }
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.authRequired)) {
+    if (store.state.login.isLogin) {
+      next();
+    } else {
+      next({
+        path: '/home',
+        query: { redirect: to.fullPath }
+      });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

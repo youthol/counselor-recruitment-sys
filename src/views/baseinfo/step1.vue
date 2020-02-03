@@ -266,7 +266,7 @@
 <script>
 import baseinfoMixin from '@/mixins/baseinfo-mixin';
 export default {
-  name: 'step1',
+  name: 'Step1',
   mixins: [baseinfoMixin],
   data() {
     return {

@@ -32,7 +32,13 @@ export default {
   computed: {},
   methods: {
     onSubmit() {
-      this.$store.dispatch('login');
+      // TODO
+      /**
+       * 1. 登录逻辑
+       * 2. loading动画
+       */
+      this.$store.dispatch('login/login');
+      this.$router.replace('notice');
     }
   }
 };

@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'notice-table',
+  name: 'NoticeTable',
   data() {
     return {
       tableData: [
