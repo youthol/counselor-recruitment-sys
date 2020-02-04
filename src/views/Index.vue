@@ -74,7 +74,8 @@
 
     <!-- content -->
     <template v-slot:content>
-      <h3 class="content__title">{{ title || '首页' }}</h3>
+      <!-- FIXME:使部分页面不显示 -->
+      <h3 v-if="title" class="content__title">{{ title }}</h3>
       <div class="content__bd">
         <router-view />
       </div>
@@ -103,7 +104,7 @@ export default {
   },
   computed: {
     title() {
-      return this.$route.meta.title;
+      return this.$route.query.hideTitle ? false : this.$route.meta.title;
     },
     menus() {
       if (this.checkAdmin(this.$route.path)) {

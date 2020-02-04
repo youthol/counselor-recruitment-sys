@@ -32,11 +32,6 @@
       "name": "首页",
       "icon": "charts",
       "path": "/home"
-    },
-    {
-      "name": "通知公告",
-      "icon": "charts",
-      "path": "/notice"
     }
   ]
 }

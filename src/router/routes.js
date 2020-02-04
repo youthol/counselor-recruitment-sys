@@ -13,8 +13,9 @@ const routes = [
     name: 'notice',
     meta: {
       title: '通知公告',
-      authRequired: false
+      authRequired: true
     },
+    props: route => ({ query: route.query.q }), // 路由传参
     component: () => import('@/views/notice/index') // 动态引入
   },
   {
