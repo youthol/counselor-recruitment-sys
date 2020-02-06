@@ -25,21 +25,21 @@
 <script>
 import './style.scss';
 export default {
-  name: 'download',
+  name: 'Download',
   data() {
     return {
       fileList: [
         {
           id: 1,
           name: '党员证明',
-          url: 'https://youthol.cn',
+          url: 'https://youthlab.sdut.edu.cn',
           created_at: '2017-03-17',
           updated_at: '2017-03-17'
         },
         {
           id: 2,
           name: '学士干部证明',
-          url: 'https://youthol.cn',
+          url: 'https://youthlab.sdut.edu.cn',
           created_at: '2017-03-17',
           updated_at: '2017-03-17'
         }
@@ -49,7 +49,6 @@ export default {
   }
 };
 </script>
-
 
 <style lang="scss" scoped>
 .time {
@@ -82,4 +81,3 @@ export default {
   clear: both;
 }
 </style>
-
