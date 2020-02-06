@@ -1,5 +1,23 @@
 {
-  "admin": [],
+  "adminLogin": [
+    {
+      "name": "前台管理",
+      "icon": "charts",
+      "path": "/admin/clientmanager"
+    },
+    {
+      "name": "审核列表",
+      "icon": "charts",
+      "path": "/admin/examinelist"
+    }
+  ],
+  "adminQuit": [
+    {
+      "name": "后台",
+      "icon": "charts",
+      "path": "/admin"
+    }
+  ],
   "clientLogin": [
     {
       "name": "首页",
@@ -17,7 +35,7 @@
       "path": "/baseinfo"
     },
     {
-      "name": "简历提交",
+      "name": "审核状态",
       "icon": "charts",
       "path": "/submit"
     },

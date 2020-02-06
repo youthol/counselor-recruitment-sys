@@ -53,6 +53,7 @@
         <!-- 未登录 -->
         <div v-else>
           <span
+            v-if="!checkAdmin"
             class="dropdown-link"
             title="点击注册"
             data-key="1"
@@ -75,7 +76,7 @@
     <!-- content -->
     <template v-slot:content>
       <!-- FIXME:使部分页面不显示 -->
-      <h3 v-if="title" class="content__title">{{ title }}</h3>
+      <!-- <h3 v-if="title" class="content__title">{{ title }}</h3> -->
       <div class="content__bd">
         <router-view />
       </div>
@@ -107,9 +108,13 @@ export default {
       return this.$route.query.hideTitle ? false : this.$route.meta.title;
     },
     menus() {
-      if (this.checkAdmin(this.$route.path)) {
-        return navData.admin;
-      } else if (this.checkLogin) {
+      if (this.checkAdmin) {
+        if (this.checkLogin('admin')) {
+          return navData.adminLogin;
+        } else {
+          return navData.adminQuit;
+        }
+      } else if (this.checkLogin('client')) {
         return navData.clientLogin;
       } else {
         return navData.clientQuit;
@@ -121,8 +126,9 @@ export default {
       );
       return isMenuRoute ? this.$route.path : '';
     },
-    checkLogin() {
-      return this.$store.state.login.isLogin;
+    checkAdmin(path) {
+      const pattern = /^\/admin/;
+      return pattern.test(this.$route.path);
     }
   },
   mounted() {
@@ -130,9 +136,12 @@ export default {
     console.log('route', this.$route);
   },
   methods: {
-    checkAdmin(path) {
-      const pattern = /^\/admin/;
-      return pattern.test(path);
+    checkLogin(end) {
+      if (end === 'admin') {
+        return this.$store.state.login.isAdminLogin; // 后台
+      } else {
+        return this.$store.state.login.isClientLogin; // 前台
+      }
     },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);

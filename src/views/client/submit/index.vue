@@ -35,22 +35,22 @@ export default {
       submitRecords: [
         {
           id: 1,
-          statusCode: 3,
-          statusMsg: '审核未通过',
-          description: '1111',
+          statusCode: 1,
+          statusMsg: '提交成功',
+          description: '无',
           created_at: '2019-03-17 18:11'
         },
         {
           id: 2,
-          statusCode: 3,
-          statusMsg: '审核未通过',
+          statusCode: 2,
+          statusMsg: '待审核',
           description: '无',
           created_at: '	2019-03-17 23:09'
         },
         {
           id: 3,
-          statusCode: 2,
-          statusMsg: '待审核',
+          statusCode: 0,
+          statusMsg: '审核结果',
           description: '无',
           created_at: '2019-03-18 09:59'
         }

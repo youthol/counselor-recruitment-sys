@@ -1,7 +1,7 @@
 <template>
   <el-form ref="form" :model="formData" label-width="80px" class="form">
-    <el-form-item label="证件号码">
-      <el-input v-model="formData.num" placeholder="请输入身份证号或电话号码" />
+    <el-form-item :label="checkAdmin ? '账号' : '证件号码'">
+      <el-input v-model="formData.num" placeholder="请输入管理员账号" />
     </el-form-item>
     <el-form-item label="密码">
       <el-input v-model="formData.pwd" placeholder="请输入密码" />
@@ -9,8 +9,10 @@
 
     <el-form-item>
       <el-button type="primary" @click="onSubmit">登录</el-button>
-      <span class="tip">还没有账号？点击这里</span>
-      <el-button type="text" class="register">注册</el-button>
+      <span v-if="!checkAdmin">
+        <span class="tip">还没有账号？点击这里</span>
+        <el-button type="text" class="register">注册</el-button>
+      </span>
     </el-form-item>
   </el-form>
 </template>
@@ -29,7 +31,12 @@ export default {
       }
     };
   },
-  computed: {},
+  computed: {
+    checkAdmin() {
+      const pattern = /^\/admin/;
+      return pattern.test(this.$route.path);
+    }
+  },
   methods: {
     onSubmit() {
       // TODO
@@ -38,7 +45,11 @@ export default {
        * 2. loading动画
        */
       this.$store.dispatch('login/login');
-      this.$router.replace('notice');
+      if (this.checkadmin) {
+        this.$router.replace('admin/clientmanager');
+      } else {
+        this.$router.replace('notice');
+      }
     }
   }
 };
