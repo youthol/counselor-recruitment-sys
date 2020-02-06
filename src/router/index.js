@@ -21,17 +21,32 @@ const router = new Router({
       children: [
         ...routes // all of routes
       ],
-      redirect: '/home'
+      redirect: '/home',
+      beforeEnter: (to, from, next) => {
+        if (to.matched.some(record => record.meta.authRequired)) {
+          if (store.state.login.loginType === 'client') {
+            next();
+          } else {
+            next({
+              path: '/home',
+              query: { redirect: to.fullPath }
+            });
+          }
+        } else {
+          next();
+        }
+      }
     },
     {
       path: '/admin',
+      name: 'admin',
       component: Index,
       children: [
         ...adminRoutes // all of routes
       ],
       beforeEnter: (to, from, next) => {
         if (to.matched.some(record => record.meta.authRequired)) {
-          if (store.state.login.isAdminLogin) {
+          if (store.state.login.loginType === 'admin') {
             next();
           } else {
             next({
@@ -53,10 +68,18 @@ router.beforeEach((to, from, next) => {
     if (store.state.login.isLogin) {
       next();
     } else {
-      next({
-        path: '/home',
-        query: { redirect: to.fullPath }
-      });
+      const pattern = /^\/admin/;
+      if (pattern.test(to.fullPath)) {
+        next({
+          path: '/admin',
+          query: { redirect: to.fullPath }
+        });
+      } else {
+        next({
+          path: '/home',
+          query: { redirect: to.fullPath }
+        });
+      }
     }
   } else {
     next();

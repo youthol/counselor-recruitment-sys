@@ -4,8 +4,7 @@ import { LOADING, SUCCESS, FAIL } from '../status';
 
 const state = {
   isLogin: false, // 用于全局导航守卫
-  isClientLogin: false,
-  isAdminLogin: false,
+  loginType: '',
   loginStatus: ''
 };
 
@@ -22,23 +21,15 @@ const mutations = {
   [LOGIN_SUCCESS](state, payload) {
     state.loginStatus = SUCCESS;
     state.isLogin = true;
-    if (payload === 'admin') {
-      state.isAdminLogin = true;
-    } else {
-      state.isClientLogin = true;
-    }
+    state.loginType = payload;
   },
   [LOGIN_FAILURE](state, payload) {
     state.loginStatus = FAIL;
   },
-  [LOGOUT](state, payload) {
+  [LOGOUT](state) {
     state.loginStatus = false;
     state.isLogin = false;
-    if (payload === 'admin') {
-      state.isAdminLogin = false;
-    } else {
-      state.isClientLogin = false;
-    }
+    state.loginType = '';
   }
 };
 

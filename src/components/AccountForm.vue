@@ -44,8 +44,11 @@ export default {
        * 1. 登录逻辑
        * 2. loading动画
        */
-      this.$store.dispatch('login/login');
-      if (this.checkadmin) {
+      this.$store.dispatch('login/login', {
+        type: this.checkAdmin ? 'admin' : 'client',
+        data: {}
+      });
+      if (this.checkAdmin) {
         this.$router.replace('admin/clientmanager');
       } else {
         this.$router.replace('notice');
