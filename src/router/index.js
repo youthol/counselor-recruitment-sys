@@ -31,7 +31,7 @@ const router = new Router({
             next();
           } else {
             next({
-              path: '/home',
+              path: '/admin',
               query: { redirect: to.fullPath }
             });
           }
@@ -52,7 +52,7 @@ const router = new Router({
             next();
           } else {
             next({
-              path: '/admin',
+              path: '/home',
               query: { redirect: to.fullPath }
             });
           }
@@ -69,13 +69,12 @@ if (localStorage.getItem('login')) {
   store.commit(`login/${SET_LOGIN}`, JSON.parse(localStorage.getItem('login')));
 }
 
-// FIXME: 检查登录后未区分是前台还是后台
 router.beforeEach((to, from, next) => {
+  const pattern = /^\/admin/;
   if (to.matched.some(record => record.meta.authRequired)) {
     if (store.state.login.isLogin) {
       next();
     } else {
-      const pattern = /^\/admin/;
       if (pattern.test(to.fullPath)) {
         next({
           path: '/admin',

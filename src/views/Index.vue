@@ -26,6 +26,8 @@
           </el-menu-item>
         </el-menu>
       </div>
+
+      <!-- FIXME:前台登陆后直接切换到后台仍然显示登录的bug -->
       <div class="user-operation">
         <!-- 已登录 -->
         <el-dropdown v-if="isLogin" placement="bottom" @command="handleClick">
@@ -101,7 +103,11 @@ export default {
   computed: {
     ...mapState(['isLogin', 'loginType']),
     title() {
-      return this.$route.query.hideTitle ? false : this.$route.meta.title;
+      // 除了不设置meta中的title以外，还可以通过query中的hidenTitle来隐藏
+      if (this.$route.query.hideTitle) {
+        return;
+      }
+      return this.$route.meta.title;
     },
     menus() {
       if (this.checkAdmin) {
@@ -125,6 +131,13 @@ export default {
     checkAdmin(path) {
       const pattern = /^\/admin/;
       return pattern.test(this.$route.path);
+    },
+    userType() {
+      if (this.checkAdmin) {
+        return 'admin';
+      } else {
+        return 'client';
+      }
     }
   },
   watch: {

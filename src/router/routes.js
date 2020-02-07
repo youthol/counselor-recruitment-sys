@@ -4,7 +4,7 @@ export const routes = [
     name: 'home',
     meta: {
       title: '首页',
-      authRequired: false
+      authRequired: true
     },
     component: () => import('@/views/client/home/index') // 动态引入
   },
@@ -60,24 +60,20 @@ export const adminRoutes = [
     path: '',
     meta: {
       title: '后台',
-      authRequired: false
+      authRequired: true
     },
     component: () => import('@/views/admin/index')
   },
   {
     path: 'clientmanager',
-    name: 'clientmanager',
     meta: {
-      title: '前台管理',
       authRequired: true
     },
     component: () => import('@/views/admin/clientmanager/index')
   },
   {
     path: 'examinelist',
-    name: 'examinelist',
     meta: {
-      title: '审核列表',
       authRequired: true
     },
     component: () => import('@/views/admin/examinelist/index')
