@@ -26,19 +26,17 @@
           </el-menu-item>
         </el-menu>
       </div>
+
+      <!-- FIXME:前台登陆后直接切换到后台仍然显示登录的bug -->
       <div class="user-operation">
         <!-- 已登录 -->
-        <el-dropdown
-          v-if="checkLogin"
-          placement="bottom"
-          @command="handleClick"
-        >
+        <el-dropdown v-if="isLogin" placement="bottom" @command="handleClick">
           <span class="dropdown-link">
             <span class="user-name">{{ username }}</span>
             <i class="iconfont icon-denglu"></i>
           </span>
           <!-- 登录后用户图标下拉菜单 -->
-          <el-dropdown-menu v-if="checkLogin" slot="dropdown">
+          <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="1">
               <i class="iconfont icon-bianji"></i>
               <span>修改密码</span>
@@ -76,7 +74,7 @@
     <!-- content -->
     <template v-slot:content>
       <!-- FIXME:使部分页面不显示 -->
-      <!-- <h3 v-if="title" class="content__title">{{ title }}</h3> -->
+      <h3 v-if="title" class="content__title">{{ title }}</h3>
       <div class="content__bd">
         <router-view />
       </div>
@@ -88,6 +86,9 @@
 import './style.scss';
 import navData from '@/router/nav.json';
 import BaseLayout from '@/layouts/BaseLayout';
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapState } = createNamespacedHelpers('login');
 
 export default {
   name: 'Index',
@@ -96,25 +97,26 @@ export default {
   },
   data() {
     return {
-      username: '张无忌',
-      dialogShow: false, // 显示弹出层
-      dialogInfo: {
-        title: null
-      }
+      username: '张无忌'
     };
   },
   computed: {
+    ...mapState(['isLogin', 'loginType']),
     title() {
-      return this.$route.query.hideTitle ? false : this.$route.meta.title;
+      // 除了不设置meta中的title以外，还可以通过query中的hidenTitle来隐藏
+      if (this.$route.query.hideTitle) {
+        return;
+      }
+      return this.$route.meta.title;
     },
     menus() {
       if (this.checkAdmin) {
-        if (this.checkLogin('admin')) {
+        if (this.loginType === 'admin') {
           return navData.adminLogin;
         } else {
           return navData.adminQuit;
         }
-      } else if (this.checkLogin('client')) {
+      } else if (this.loginType === 'client') {
         return navData.clientLogin;
       } else {
         return navData.clientQuit;
@@ -129,20 +131,23 @@ export default {
     checkAdmin(path) {
       const pattern = /^\/admin/;
       return pattern.test(this.$route.path);
+    },
+    userType() {
+      if (this.checkAdmin) {
+        return 'admin';
+      } else {
+        return 'client';
+      }
     }
+  },
+  watch: {
+    // $route: 'changeEndType'
   },
   mounted() {
     console.log('store', this.$store);
     console.log('route', this.$route);
   },
   methods: {
-    checkLogin(end) {
-      if (end === 'admin') {
-        return this.$store.state.login.isAdminLogin; // 后台
-      } else {
-        return this.$store.state.login.isClientLogin; // 前台
-      }
-    },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -157,7 +162,11 @@ export default {
           type: 'warning'
         }).then(() => {
           this.$store.dispatch('login/logout');
-          this.$router.push('home');
+          if (this.checkAdmin) {
+            this.$router.push('/admin');
+          } else {
+            this.$router.push('home');
+          }
         });
       }
     },

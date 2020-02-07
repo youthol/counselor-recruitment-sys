@@ -2,14 +2,13 @@ import types from '../mutation-types';
 import { LOADING, SUCCESS, FAIL } from '../status';
 // import accountApi from '../../api/account';
 
+const { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, SET_LOGIN } = types;
+
 const state = {
   isLogin: false, // 用于全局导航守卫
-  isClientLogin: false,
-  isAdminLogin: false,
+  loginType: '',
   loginStatus: ''
 };
-
-const { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } = types;
 
 const getters = {};
 
@@ -22,23 +21,20 @@ const mutations = {
   [LOGIN_SUCCESS](state, payload) {
     state.loginStatus = SUCCESS;
     state.isLogin = true;
-    if (payload === 'admin') {
-      state.isAdminLogin = true;
-    } else {
-      state.isClientLogin = true;
-    }
+    state.loginType = payload;
+    localStorage.setItem('login', JSON.stringify(state));
   },
   [LOGIN_FAILURE](state, payload) {
     state.loginStatus = FAIL;
   },
-  [LOGOUT](state, payload) {
+  [LOGOUT](state) {
     state.loginStatus = false;
     state.isLogin = false;
-    if (payload === 'admin') {
-      state.isAdminLogin = false;
-    } else {
-      state.isClientLogin = false;
-    }
+    state.loginType = '';
+    localStorage.setItem('login', JSON.stringify(state));
+  },
+  [SET_LOGIN](state, payload) {
+    state = Object.assign(state, payload);
   }
 };
 
