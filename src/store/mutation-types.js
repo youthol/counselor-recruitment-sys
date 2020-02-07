@@ -6,6 +6,7 @@ export default keyMirror({
   LOGIN_SUCCESS: null,
   LOGIN_FAILURE: null,
   LOGOUT: null,
+  SET_LOGIN: null,
   // get users
   USERS: null,
   USERS_SUCCESS: null,
