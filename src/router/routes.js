@@ -1,10 +1,9 @@
 export const routes = [
   {
-    path: 'home',
-    name: 'home',
+    path: '',
     meta: {
-      title: '首页',
-      authRequired: true
+      title: '登录',
+      authRequired: false
     },
     component: () => import('@/views/client/home/index') // 动态引入
   },
@@ -60,7 +59,7 @@ export const adminRoutes = [
     path: '',
     meta: {
       title: '后台',
-      authRequired: true
+      authRequired: false
     },
     component: () => import('@/views/admin/index')
   },

@@ -14,6 +14,18 @@ export default {
   name: 'Admin',
   components: {
     AccountForm
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (vm.$store.state.login.isLogin) {
+        next({
+          path: '/admin/clientmanager',
+          query: { redirect: to.fullPath }
+        });
+      } else {
+        next();
+      }
+    });
   }
 };
 </script>

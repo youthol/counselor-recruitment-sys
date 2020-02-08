@@ -4,19 +4,7 @@
       欢迎使用 {{ year }} 年辅导员招聘系统
     </h1>
 
-    <div v-if="checkLogin" class="btns">
-      <el-button
-        type="primary"
-        icon="el-icon-warning-outline"
-        @click="readNotice"
-      >
-        阅读通知
-      </el-button>
-      <el-button plain type="success" class="start-btn" @click="entry">
-        开始报名
-      </el-button>
-    </div>
-    <account-form v-else />
+    <account-form />
   </div>
 </template>
 
@@ -45,6 +33,18 @@ export default {
     entry() {
       this.$router.push('baseinfo');
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (vm.$store.state.login.isLogin) {
+        next({
+          path: 'notice',
+          query: { redirect: to.fullPath }
+        });
+      } else {
+        next();
+      }
+    });
   }
 };
 </script>
