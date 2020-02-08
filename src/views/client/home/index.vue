@@ -45,6 +45,18 @@ export default {
     entry() {
       this.$router.push('baseinfo');
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (vm.$store.state.login.isLogin) {
+        next({
+          path: '/notice',
+          query: { redirect: to.fullPath }
+        });
+      } else {
+        next();
+      }
+    });
   }
 };
 </script>

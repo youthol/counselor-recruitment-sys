@@ -16,7 +16,7 @@ const router = new Router({
     {
       path: '*',
       component: Index,
-      redirect: '/home'
+      redirect: '/'
     },
     {
       path: '/',
@@ -24,17 +24,13 @@ const router = new Router({
       children: [
         ...routes // all of routes
       ],
-      redirect: '/home',
+      // 控制登陆的账户只能面向一端访问
       beforeEnter: (to, from, next) => {
-        if (to.matched.some(record => record.meta.authRequired)) {
-          if (store.state.login.loginType === 'client') {
-            next();
-          } else {
-            next({
-              path: '/admin',
-              query: { redirect: to.fullPath }
-            });
-          }
+        if (store.state.login.loginType === 'admin') {
+          next({
+            path: '/admin',
+            query: { redirect: to.fullPath }
+          });
         } else {
           next();
         }
@@ -47,15 +43,11 @@ const router = new Router({
         ...adminRoutes // all of routes
       ],
       beforeEnter: (to, from, next) => {
-        if (to.matched.some(record => record.meta.authRequired)) {
-          if (store.state.login.loginType === 'admin') {
-            next();
-          } else {
-            next({
-              path: '/home',
-              query: { redirect: to.fullPath }
-            });
-          }
+        if (store.state.login.loginType === 'client') {
+          next({
+            path: '/',
+            query: { redirect: to.fullPath }
+          });
         } else {
           next();
         }
@@ -71,10 +63,14 @@ if (localStorage.getItem('login')) {
 
 router.beforeEach((to, from, next) => {
   const pattern = /^\/admin/;
+  // 检查是否需要验证登录
   if (to.matched.some(record => record.meta.authRequired)) {
     if (store.state.login.isLogin) {
       next();
     } else {
+      // 若没有登陆
+      // 则检查下一个路由面向的位置是前台还是后台
+      // 然后重定向到对应的页面
       if (pattern.test(to.fullPath)) {
         next({
           path: '/admin',
@@ -82,7 +78,7 @@ router.beforeEach((to, from, next) => {
         });
       } else {
         next({
-          path: '/home',
+          path: '/',
           query: { redirect: to.fullPath }
         });
       }

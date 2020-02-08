@@ -165,7 +165,7 @@ export default {
           if (this.checkAdmin) {
             this.$router.push('/admin');
           } else {
-            this.$router.push('home');
+            this.$router.push('/');
           }
         });
       }
