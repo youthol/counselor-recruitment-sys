@@ -1,6 +1,12 @@
 <template>
-  <el-form ref="form" :model="formData" label-width="80px" class="form">
-    <el-form-item :label="checkAdmin ? '账号' : '证件号码'">
+  <el-form
+    ref="form"
+    v-loading="isLoading"
+    :model="formData"
+    label-width="80px"
+    class="form"
+  >
+    <el-form-item :label="isAdmin ? '账号' : '证件号码'">
       <el-input v-model="formData.num" placeholder="请输入管理员账号" />
     </el-form-item>
     <el-form-item label="密码">
@@ -9,7 +15,7 @@
 
     <el-form-item>
       <el-button type="primary" @click="onSubmit">登录</el-button>
-      <span v-if="!checkAdmin">
+      <span v-if="!isAdmin">
         <span class="tip">还没有账号？点击这里</span>
         <el-button type="text" class="register">注册</el-button>
       </span>
@@ -18,6 +24,8 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex';
+
 export default {
   name: 'AccountForm',
   props: {
@@ -32,9 +40,22 @@ export default {
     };
   },
   computed: {
-    checkAdmin() {
+    ...mapState('login', ['isLogin', 'loginType', 'fetchStatus']),
+    ...mapGetters('login', ['isLoading']),
+    isAdmin() {
       const pattern = /^\/admin/;
       return pattern.test(this.$route.path);
+    }
+  },
+  watch: {
+    fetchStatus() {
+      if (this.fetchStatus === 'SUCCESS') {
+        if (this.isAdmin) {
+          this.$router.replace('admin/clientmanager');
+        } else {
+          this.$router.replace('notice');
+        }
+      }
     }
   },
   methods: {
@@ -45,14 +66,9 @@ export default {
        * 2. loading动画
        */
       this.$store.dispatch('login/login', {
-        type: this.checkAdmin ? 'admin' : 'client',
+        type: this.isAdmin ? 'admin' : 'client',
         data: {}
       });
-      if (this.checkAdmin) {
-        this.$router.replace('admin/clientmanager');
-      } else {
-        this.$router.replace('notice');
-      }
     }
   }
 };

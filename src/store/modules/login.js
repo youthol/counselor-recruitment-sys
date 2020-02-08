@@ -7,28 +7,32 @@ const { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, SET_LOGIN } = types;
 const state = {
   isLogin: false, // 用于全局导航守卫
   loginType: '',
-  loginStatus: ''
+  fetchStatus: ''
 };
 
-const getters = {};
+const getters = {
+  isLoading() {
+    return state.fetchStatus === LOADING;
+  }
+};
 
 // FIXME: 只针对某一端调试
 const mutations = {
   [LOGIN](state, payload) {
-    state.loginStatus = LOADING;
+    state.fetchStatus = LOADING;
     // ...
   },
   [LOGIN_SUCCESS](state, payload) {
-    state.loginStatus = SUCCESS;
+    state.fetchStatus = SUCCESS;
     state.isLogin = true;
     state.loginType = payload;
     localStorage.setItem('login', JSON.stringify(state));
   },
   [LOGIN_FAILURE](state, payload) {
-    state.loginStatus = FAIL;
+    state.fetchStatus = FAIL;
   },
   [LOGOUT](state) {
-    state.loginStatus = false;
+    state.fetchStatus = false;
     state.isLogin = false;
     state.loginType = '';
     localStorage.setItem('login', JSON.stringify(state));
@@ -51,7 +55,9 @@ const actions = {
       commit(LOGIN);
       // const res = await accountApi.login(formData);
       // console.log(res);
-      commit(LOGIN_SUCCESS, submitInfo.type);
+      setTimeout(() => {
+        commit(LOGIN_SUCCESS, submitInfo.type);
+      }, 1000);
     } catch (error) {
       commit(LOGIN_FAILURE);
       throw error;
