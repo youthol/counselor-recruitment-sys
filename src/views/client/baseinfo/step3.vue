@@ -16,7 +16,7 @@
 <script>
 import baseinfoMixin from '@/mixins/baseinfo-mixin';
 export default {
-  name: 'step3',
+  name: 'Step3',
   mixins: [baseinfoMixin],
   methods: {
     handlePrev() {

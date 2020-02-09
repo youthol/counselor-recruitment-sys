@@ -133,7 +133,7 @@
 <script>
 import baseinfoMixin from '@/mixins/baseinfo-mixin';
 export default {
-  name: 'step2',
+  name: 'Step2',
   mixins: [baseinfoMixin],
   data() {
     return {
