@@ -73,7 +73,6 @@
 
     <!-- content -->
     <template v-slot:content>
-      <!-- FIXME:使部分页面不显示 -->
       <h3 v-if="title" class="content__title">{{ title }}</h3>
       <div class="content__bd">
         <router-view />
