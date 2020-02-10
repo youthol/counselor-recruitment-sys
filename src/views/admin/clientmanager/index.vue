@@ -1,9 +1,5 @@
 <template>
   <div class="client-manager-container">
-    <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group> -->
     <el-menu
       default-active="1"
       :collapse="isCollapse"
@@ -40,9 +36,9 @@
 </template>
 
 <script>
-import Notice from './notice';
-import Note from './note';
-import File from './file';
+import Notice from './notice/index';
+import Note from './note/index';
+import File from './file/index';
 
 export default {
   name: 'ClientManager',
@@ -92,13 +88,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-menu-vertical:not(.el-menu--collapse) {
-  width: 200px;
+.el-menu-vertical {
+  min-width: 200px;
+  height: 100%;
 }
 
 .client-manager-container {
   display: flex;
-  // justify-content: space-between;
   height: calc(100vh - 180px);
 }
 </style>
