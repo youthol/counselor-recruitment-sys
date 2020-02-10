@@ -126,6 +126,9 @@
 <script>
 export default {
   name: 'NoticeTable',
+  props: {
+    loading: Boolean
+  },
   data() {
     return {
       tableData: [
@@ -175,6 +178,16 @@ export default {
     };
   },
   methods: {
+    choseTitle(row) {
+      console.log(row.id);
+      this.$router.push({
+        path: 'clientmanager',
+        query: {
+          type: 'notice',
+          id: row.id
+        }
+      });
+    },
     filterTag(value, row) {
       return row.state === value;
     }
