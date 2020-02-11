@@ -49,7 +49,6 @@ export default {
 
 <style lang="scss" scoped>
 .notice-table-container {
-  flex-grow: 1;
   display: flex;
   justify-content: center;
 }
