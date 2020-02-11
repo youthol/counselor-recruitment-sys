@@ -96,7 +96,8 @@ export default {
   },
   data() {
     return {
-      username: '张无忌'
+      username: '张无忌',
+      activeIndex: ''
     };
   },
   computed: {
@@ -121,12 +122,6 @@ export default {
         return navData.clientQuit;
       }
     },
-    activeIndex() {
-      const isMenuRoute = this.menus.some(el =>
-        el.path.includes(this.$route.path)
-      );
-      return isMenuRoute ? this.$route.path : '';
-    },
     checkAdmin(path) {
       const pattern = /^\/admin/;
       return pattern.test(this.$route.path);
@@ -140,15 +135,16 @@ export default {
     }
   },
   watch: {
-    // $route: 'changeEndType'
+    $route: 'changeActiveIndex'
   },
   mounted() {
     console.log('store', this.$store);
     console.log('route', this.$route);
+    this.changeActiveIndex();
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
     },
     /**
      * 下拉项点击函数
@@ -179,6 +175,26 @@ export default {
         return;
       }
       this.$router.replace('home');
+    },
+    changeActiveIndex() {
+      // FIXME: 简化代码
+
+      // 检测route是否匹配到menu
+      const isMenuRoute = this.menus.some(el =>
+        el.path.includes(this.$route.path)
+      );
+      if (isMenuRoute) {
+        this.activeIndex = this.$route.path;
+        return;
+      } else if (this.$route.meta.activeIndex) {
+        for (const item of this.menus) {
+          if (item.activeIndex === this.$route.meta.activeIndex) {
+            this.activeIndex = item.path;
+            return;
+          }
+        }
+      }
+      this.activeIndex = '';
     }
   }
 };

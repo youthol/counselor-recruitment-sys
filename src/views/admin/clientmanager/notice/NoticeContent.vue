@@ -51,6 +51,7 @@ import { quillEditor } from 'vue-quill-editor';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
+import '@/style/third-part-override.scss';
 
 export default {
   name: 'NoticeContent',
@@ -75,7 +76,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .notice-content-container {
   height: 100%;
   display: flex;
@@ -108,17 +109,10 @@ export default {
 
 .right-options {
   margin-left: 40px;
+
   .item {
     margin-top: 8px;
   }
-}
-
-.ql-container {
-  height: auto !important;
-}
-
-.ql-editor {
-  height: 300px !important;
 }
 
 .btn-group {

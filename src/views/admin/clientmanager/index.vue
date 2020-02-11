@@ -1,6 +1,7 @@
 <template>
   <div class="client-manager-container">
     <el-menu
+      router
       default-active="1"
       :collapse="isCollapse"
       class="el-menu-vertical"
@@ -29,28 +30,16 @@
       </el-menu-item>
     </el-menu>
 
-    <keep-alive>
-      <component :is="currentPage" />
-    </keep-alive>
+    <router-view />
   </div>
 </template>
 
 <script>
-import Notice from './notice/index';
-import Note from './note/index';
-import File from './file/index';
-
 export default {
   name: 'ClientManager',
-  components: {
-    Notice,
-    Note,
-    File
-  },
   data() {
     return {
       isCollapse: false,
-      currentPage: Notice,
       menu: [
         {
           title: '公告发布'
@@ -71,17 +60,6 @@ export default {
     handleSelect(key, keyPath) {
       // TODO: 测试代码
       console.log(key, keyPath);
-      switch (key) {
-        case '1':
-          this.currentPage = Notice;
-          break;
-        case '3':
-          this.currentPage = File;
-          break;
-        default:
-          this.currentPage = Note;
-          break;
-      }
     }
   }
 };

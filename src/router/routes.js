@@ -1,3 +1,4 @@
+// 前台路由
 export const routes = [
   {
     path: '',
@@ -14,8 +15,14 @@ export const routes = [
       title: '通知公告',
       authRequired: true
     },
-    props: route => ({ query: route.query.q }), // 路由传参
-    component: () => import('@/views/client/notice/index')
+    component: () => import('@/views/client/notice/index'),
+    children: [
+      // 公告详情页面
+      {
+        path: 'content',
+        props: route => ({ query: route.query.q }) // 路由传参
+      }
+    ]
   },
   {
     path: 'baseinfo',
@@ -54,6 +61,32 @@ export const routes = [
   }
 ];
 
+// 后台路由中中，前台管理页面的子路由
+const clientManagerRoutes = [
+  {
+    path: '',
+    redirect: 'notice'
+  },
+  // 公告发布
+  {
+    path: 'notice',
+    component: () => import('@/views/admin/clientmanager/notice/index'),
+    meta: {
+      activeIndex: 'clientmanager' // 用来保持elementUI中menus高亮
+    },
+    children: [
+      // 公告详情页面
+      {
+        path: 'content',
+        props: route => ({ query: route.query.q }), // 路由传参
+        component: () =>
+          import('@/views/admin/clientmanager/notice/NoticeContent')
+      }
+    ]
+  }
+];
+
+// 后台路由
 export const adminRoutes = [
   {
     path: '',
@@ -63,16 +96,20 @@ export const adminRoutes = [
     },
     component: () => import('@/views/admin/index')
   },
+  // 前台管理
   {
     path: 'clientmanager',
     meta: {
       authRequired: true
     },
-    component: () => import('@/views/admin/clientmanager/index')
+    component: () => import('@/views/admin/clientmanager/index'),
+    children: clientManagerRoutes
   },
+  // 审核列表
   {
     path: 'examinelist',
     meta: {
+      activeIndex: 'examinelist',
       authRequired: true
     },
     component: () => import('@/views/admin/examinelist/index')
