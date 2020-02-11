@@ -3,7 +3,7 @@
     <el-tabs
       v-model="activeName"
       type="card"
-      stretch="true"
+      :stretch="true"
       class="tabs"
       @tab-click="handleClick"
     >
@@ -18,7 +18,8 @@
       <el-table-column prop="name" label="姓名" width="140"> </el-table-column>
       <el-table-column prop="phone" label="联系方式" width="180">
       </el-table-column>
-      <el-table-column prop="id_card" label="身份证号"> </el-table-column>
+      <el-table-column prop="id_card" label="身份证号" min-width="200">
+      </el-table-column>
       <el-table-column prop="manager" label="管理" width="140">
       </el-table-column>
       <el-table-column prop="state" label="状态" width="140"> </el-table-column>
