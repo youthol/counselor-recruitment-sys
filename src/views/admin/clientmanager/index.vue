@@ -68,11 +68,9 @@ export default {
 <style lang="scss" scoped>
 .el-menu-vertical {
   min-width: 200px;
-  height: 100%;
 }
 
 .client-manager-container {
   display: flex;
-  height: calc(100vh - 180px);
 }
 </style>

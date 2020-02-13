@@ -176,9 +176,15 @@ export default {
       }
       this.$router.replace('home');
     },
+    getMainMenuActiveIndex() {
+      for (const element of this.$route.matched) {
+        if (element.meta.mainMenuActiveIndex) {
+          return element.meta.mainMenuActiveIndex;
+        }
+      }
+      return;
+    },
     changeActiveIndex() {
-      // FIXME: 简化代码
-
       // 检测route是否匹配到menu
       const isMenuRoute = this.menus.some(el =>
         el.path.includes(this.$route.path)
@@ -186,9 +192,9 @@ export default {
       if (isMenuRoute) {
         this.activeIndex = this.$route.path;
         return;
-      } else if (this.$route.meta.activeIndex) {
+      } else if (this.getMainMenuActiveIndex()) {
         for (const item of this.menus) {
-          if (item.activeIndex === this.$route.meta.activeIndex) {
+          if (item.activeIndex === this.getMainMenuActiveIndex()) {
             this.activeIndex = item.path;
             return;
           }

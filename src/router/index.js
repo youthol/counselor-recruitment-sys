@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Index from '@/views/Index';
 import store from '../store';
-import { routes, adminRoutes } from './routes';
+import { routes } from './client/routes';
+import { adminRoutes } from './admin/routes';
 import types from '../store/mutation-types';
 
 const { SET_LOGIN } = types;

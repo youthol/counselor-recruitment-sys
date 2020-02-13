@@ -1,8 +1,16 @@
 // quill富文本编辑器
+.quill-editor {
+  width: 900px;
+}
 .ql-container {
   height: auto !important;
 
   .ql-editor {
     height: 300px !important;
   }
+}
+
+// element-ui 置顶行的背景颜色
+.el-table .top-row {
+  background: #e7eaec;
 }
