@@ -1,24 +1,21 @@
 <template>
-  <div>
+  <div class="content-container">
     <el-page-header content="公告详情" @back="goBack" />
-    <h1 class="title">{{ postInfo.title }}</h1>
-    <div class="subtitle">发布日期：{{ postInfo.date }}</div>
-    <div class="content">{{ postInfo.content }}</div>
+    <notice-content />
   </div>
 </template>
 
 <script>
+import NoticeContent from '@/components/NoticeContent';
+
 export default {
   name: 'NoticeContent',
+  components: {
+    NoticeContent
+  },
   props: {},
   data() {
-    return {
-      postInfo: {
-        title: '报名须知',
-        date: '2016-05-01',
-        content: '反对户籍卡了的骄傲克劳福德就是卡'
-      }
-    };
+    return {};
   },
   methods: {
     goBack() {
@@ -31,20 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 20px;
-}
-
-.subtitle {
-  text-align: center;
-  font-size: 12px;
-}
-
-.content {
-  width: 600px;
-  margin: 40px auto 0;
-  font-size: 14px;
+.content-container {
+  margin-bottom: 20px;
 }
 </style>
