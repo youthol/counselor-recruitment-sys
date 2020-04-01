@@ -1,6 +1,6 @@
 <template>
   <div>
-    材料发布
+    file
   </div>
 </template>
 
@@ -10,4 +10,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

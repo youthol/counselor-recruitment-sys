@@ -6,7 +6,7 @@ export const routes = [
       title: '登录',
       authRequired: false
     },
-    component: () => import('@/views/client/home/index') // 动态引入
+    component: () => import('@/views/client/index') // 动态引入
   },
   {
     path: 'notice',

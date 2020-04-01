@@ -20,6 +20,34 @@
       "path": "/admin"
     }
   ],
+  "clientManager": [
+    {
+      "name": "公告发布",
+      "path": "/admin/clientmanager/notice"
+    },
+    {
+      "name": "说明管理",
+      "path": "/admin/clientmanager/note",
+      "children": [
+        {
+          "name": "个人资料",
+          "path": "/admin/clientmanager/note/baseinfo"
+        },
+        {
+          "name": "审核状态",
+          "path": "/admin/clientmanager/note/submit"
+        },
+        {
+          "name": "材料下载",
+          "path": "/admin/clientmanager/note/file"
+        }
+      ]
+    },
+    {
+      "name": "材料发布",
+      "path": "/admin/clientmanager/file"
+    }
+  ],
   "clientLogin": [
     {
       "name": "通知公告",

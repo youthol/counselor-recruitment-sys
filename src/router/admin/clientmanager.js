@@ -1,15 +1,9 @@
 export const clientManagerRoutes = [
   // 公告发布
   {
-    path: '',
-    component: () => import('@/views/admin/clientmanager/notice/index'),
-    redirect: 'notice',
+    path: 'notice',
+    component: () => import('@/views/admin/clientmanager/notice/NoticeTable'),
     children: [
-      {
-        path: 'notice', // 公告列表
-        component: () =>
-          import('@/views/admin/clientmanager/notice/NoticeTable')
-      },
       {
         path: 'editor', // 公告编辑器
         props: route => ({ query: route.query.q }), // 路由传参
@@ -23,5 +17,23 @@ export const clientManagerRoutes = [
           import('@/views/admin/clientmanager/notice/NoticeContent')
       }
     ]
+  },
+  // 说明管理
+  {
+    path: 'note/baseinfo',
+    component: () => import('@/views/admin/clientmanager/note/BaseInfoNote')
+  },
+  {
+    path: 'note/submit',
+    component: () => import('@/views/admin/clientmanager/note/SubmitNote')
+  },
+  {
+    path: 'note/file',
+    component: () => import('@/views/admin/clientmanager/note/FileNote')
+  },
+  // 资料发布
+  {
+    path: 'file',
+    component: () => import('@/views/admin/clientmanager/file/FileList')
   }
 ];

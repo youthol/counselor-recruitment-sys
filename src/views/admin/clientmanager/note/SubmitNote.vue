@@ -1,13 +1,13 @@
 <template>
   <div>
-    说明管理
+    submit
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Note'
+  name: 'Submit'
 };
 </script>
 
-<style></style>
+<style scoped></style>

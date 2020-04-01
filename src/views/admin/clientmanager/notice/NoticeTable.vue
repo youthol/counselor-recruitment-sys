@@ -185,9 +185,9 @@ export default {
     };
   },
   methods: {
+    // 置顶元素样式
     tableRowClassName({ row, rowIndex }) {
       console.log(row, rowIndex);
-
       if (row.top === true) {
         return 'top-row';
       }
@@ -201,7 +201,7 @@ export default {
     handleEdit(index, row) {
       console.log('Edit');
       console.log(index, row);
-      this.$router.push('editor');
+      this.$router.push('notice/editor');
     },
     handleDelete(index, row) {
       console.log('Delete');
@@ -239,10 +239,6 @@ export default {
 </script>
 
 <style scoped>
-.notice-table-container {
-  height: calc(100vh - 180px);
-}
-
 .pagination {
   margin-top: 10px;
 }

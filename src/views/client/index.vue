@@ -63,22 +63,4 @@ export default {
   text-align: center;
   font-size: 24px;
 }
-
-.btns {
-  text-align: center;
-  margin: 70px 0 0;
-}
-
-.start-btn {
-  margin-left: 30px;
-}
-
-.card-margin {
-  margin-top: 40px;
-}
-
-.btn-con {
-  text-align: center;
-  margin-top: 80px;
-}
 </style>
