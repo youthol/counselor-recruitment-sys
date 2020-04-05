@@ -3,14 +3,12 @@
     {
       "name": "前台管理",
       "icon": "charts",
-      "path": "/admin/clientmanager",
-      "activeIndex": "clientmanager"
+      "path": "/admin/clientmanager"
     },
     {
       "name": "审核列表",
       "icon": "charts",
-      "path": "/admin/examinelist",
-      "activeIndex": "examinelist"
+      "path": "/admin/examinelist"
     }
   ],
   "adminQuit": [
@@ -27,7 +25,6 @@
     },
     {
       "name": "说明管理",
-      "path": "/admin/clientmanager/note",
       "children": [
         {
           "name": "个人资料",

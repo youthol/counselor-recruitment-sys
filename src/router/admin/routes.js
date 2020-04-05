@@ -14,10 +14,10 @@ export const adminRoutes = [
   {
     path: 'clientmanager',
     meta: {
-      mainMenuActiveIndex: 'clientmanager', // 在嵌套子路由下，用来保持elementUI中menus高亮
       authRequired: true
     },
     component: () => import('@/views/admin/clientmanager/index'),
+    redirect: 'clientmanager/notice',
     children: clientManagerRoutes
   },
   // 审核列表

@@ -2,21 +2,17 @@ export const clientManagerRoutes = [
   // 公告发布
   {
     path: 'notice',
-    component: () => import('@/views/admin/clientmanager/notice/NoticeTable'),
-    children: [
-      {
-        path: 'editor', // 公告编辑器
-        props: route => ({ query: route.query.q }), // 路由传参
-        component: () =>
-          import('@/views/admin/clientmanager/notice/NoticeEditor')
-      },
-      {
-        path: 'content', // 公告详情
-        props: route => ({ query: route.query.q }),
-        component: () =>
-          import('@/views/admin/clientmanager/notice/NoticeContent')
-      }
-    ]
+    component: () => import('@/views/admin/clientmanager/notice/NoticeTable')
+  },
+  {
+    path: 'notice/editor', // 公告编辑器
+    props: route => ({ query: route.query.q }), // 路由传参
+    component: () => import('@/views/admin/clientmanager/notice/NoticeEditor')
+  },
+  {
+    path: 'notice/content', // 公告详情
+    props: route => ({ query: route.query.q }),
+    component: () => import('@/views/admin/clientmanager/notice/NoticeContent')
   },
   // 说明管理
   {

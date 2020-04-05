@@ -27,7 +27,6 @@
         </el-menu>
       </div>
 
-      <!-- FIXME:前台登陆后直接切换到后台仍然显示登录的bug -->
       <div class="user-operation">
         <!-- 已登录 -->
         <el-dropdown v-if="isLogin" placement="bottom" @command="handleClick">
@@ -146,9 +145,6 @@ export default {
     handleSelect(key, keyPath) {
       // console.log(key, keyPath);
     },
-    /**
-     * 下拉项点击函数
-     */
     handleClick(command) {
       if (command === '2') {
         this.$confirm('确定要退出吗？', '注意', {
@@ -176,31 +172,14 @@ export default {
       }
       this.$router.replace('home');
     },
-    getMainMenuActiveIndex() {
-      for (const element of this.$route.matched) {
-        if (element.meta.mainMenuActiveIndex) {
-          return element.meta.mainMenuActiveIndex;
-        }
-      }
-      return;
-    },
+    // $route 发生变化时调用
     changeActiveIndex() {
-      // 检测route是否匹配到menu
-      const isMenuRoute = this.menus.some(el =>
-        el.path.includes(this.$route.path)
-      );
-      if (isMenuRoute) {
-        this.activeIndex = this.$route.path;
-        return;
-      } else if (this.getMainMenuActiveIndex()) {
-        for (const item of this.menus) {
-          if (item.activeIndex === this.getMainMenuActiveIndex()) {
-            this.activeIndex = item.path;
-            return;
-          }
+      for (const element of this.menus) {
+        if (this.$route.path.includes(element.path)) {
+          this.activeIndex = element.path;
+          return;
         }
       }
-      this.activeIndex = '';
     }
   }
 };

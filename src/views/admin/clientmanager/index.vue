@@ -2,7 +2,7 @@
   <div class="client-manager-container">
     <el-menu
       router
-      :default-active="menus[0].path"
+      :default-active="activeIndexPath"
       class="el-menu-vertical"
       @select="handleSelect"
       @open="handleOpen"
@@ -48,6 +48,7 @@ export default {
   name: 'ClientManager',
   data() {
     return {
+      activeIndexPath: '/admin/clientmanager/notice',
       menu: [
         {
           title: '公告发布'
@@ -60,6 +61,12 @@ export default {
       return navData.clientManager;
     }
   },
+  watch: {
+    $route: 'changeActiveIndex'
+  },
+  mounted() {
+    this.changeActiveIndex();
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -68,8 +75,27 @@ export default {
       console.log(key, keyPath);
     },
     handleSelect(key, keyPath) {
-      // TODO: 测试代码
       console.log(key, keyPath);
+    },
+    // $route 发生变化时调用
+    changeActiveIndex() {
+      for (const element of this.menus) {
+        // 嵌套路由
+        if (
+          typeof element.path === 'undefined' &&
+          Array.isArray(element.children)
+        ) {
+          for (const item of element.children) {
+            if (this.$route.path.includes(item.path)) {
+              this.activeIndexPath = item.path;
+              return;
+            }
+          }
+        } else if (this.$route.path.includes(element.path)) {
+          this.activeIndexPath = element.path;
+          return;
+        }
+      }
     }
   }
 };
